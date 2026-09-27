@@ -220,6 +220,8 @@ export function ContactSection() {
                   type="text"
                   tabIndex={-1}
                   autoComplete="off"
+                  aria-label="Leave this field blank"
+                  id="contact-honeypot"
                   className="hidden"
                   {...register("honeypot")}
                 />
@@ -227,11 +229,12 @@ export function ContactSection() {
                 {/* Name & Work Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                    <label htmlFor="contact-name" className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                       <User className="w-3.5 h-3.5 text-slate-400" />
                       Full Name *
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       placeholder="e.g. Elena Rostova"
                       {...register("name")}
@@ -245,11 +248,12 @@ export function ContactSection() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                    <label htmlFor="contact-email" className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                       <Mail className="w-3.5 h-3.5 text-slate-400" />
                       Work Email *
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       placeholder="name@company.com"
                       {...register("email")}
@@ -266,11 +270,12 @@ export function ContactSection() {
                 {/* Company & Primary Service Area */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                    <label htmlFor="contact-company" className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                       <Building className="w-3.5 h-3.5 text-slate-400" />
                       Company Name *
                     </label>
                     <input
+                      id="contact-company"
                       type="text"
                       placeholder="e.g. Apex Global"
                       {...register("company")}
@@ -284,10 +289,11 @@ export function ContactSection() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                    <label htmlFor="contact-service" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                       Primary Service Focus *
                     </label>
                     <select
+                      id="contact-service"
                       {...register("service")}
                       className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
                         errors.service ? "border-rose-500" : "border-slate-300 dark:border-slate-800"
@@ -319,10 +325,11 @@ export function ContactSection() {
                 {/* Budget & Target Timeline */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                    <label htmlFor="contact-budget" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                       Estimated Project Scope / Budget *
                     </label>
                     <select
+                      id="contact-budget"
                       {...register("budget")}
                       className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
                         errors.budget ? "border-rose-500" : "border-slate-300 dark:border-slate-800"
@@ -340,10 +347,11 @@ export function ContactSection() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                    <label htmlFor="contact-timeline" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                       Target Implementation Timeline *
                     </label>
                     <select
+                      id="contact-timeline"
                       {...register("timeline")}
                       className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
                         errors.timeline ? "border-rose-500" : "border-slate-300 dark:border-slate-800"
@@ -363,11 +371,12 @@ export function ContactSection() {
 
                 {/* Message */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                  <label htmlFor="contact-message" className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                     <MessageSquare className="w-3.5 h-3.5 text-slate-400" />
                     Architecture Objectives & Requirements *
                   </label>
                   <textarea
+                    id="contact-message"
                     rows={4}
                     placeholder="Briefly describe your existing architecture, performance bottlenecks, or GenAI use case..."
                     {...register("message")}

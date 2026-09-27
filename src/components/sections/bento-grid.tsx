@@ -244,11 +244,13 @@ export function BentoGrid() {
 
               {/* Interactive savings slider */}
               <div className="space-y-2 pt-2">
-                <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400">
+                <label htmlFor="finops-savings-slider" className="flex justify-between text-xs text-slate-500 dark:text-slate-400 cursor-pointer">
                   <span>Simulate enterprise cloud bill reduction:</span>
                   <span className="text-slate-900 dark:text-white font-mono font-medium">{finopsSavings}% achieved</span>
-                </div>
+                </label>
                 <input
+                  id="finops-savings-slider"
+                  aria-label="Simulate enterprise cloud bill reduction"
                   type="range"
                   min="20"
                   max="65"

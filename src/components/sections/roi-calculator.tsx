@@ -56,13 +56,15 @@ export function RoiCalculator() {
 
             {/* Slider 1: Monthly Cloud Spend */}
             <div className="space-y-3">
-              <div className="flex justify-between text-sm">
+              <label htmlFor="roi-monthly-spend" className="flex justify-between text-sm cursor-pointer">
                 <span className="text-slate-700 dark:text-slate-300 font-medium">Monthly Cloud Spend:</span>
                 <span className="font-mono font-bold text-slate-900 dark:text-white text-base">
                   ${monthlySpend.toLocaleString()} / mo
                 </span>
-              </div>
+              </label>
               <input
+                id="roi-monthly-spend"
+                aria-label="Monthly Cloud Spend"
                 type="range"
                 min="10000"
                 max="500000"
@@ -80,13 +82,15 @@ export function RoiCalculator() {
 
             {/* Slider 2: Daily Requests / Transactions */}
             <div className="space-y-3 pt-2">
-              <div className="flex justify-between text-sm">
+              <label htmlFor="roi-daily-requests" className="flex justify-between text-sm cursor-pointer">
                 <span className="text-slate-700 dark:text-slate-300 font-medium">Daily API Requests / Events:</span>
                 <span className="font-mono font-bold text-slate-900 dark:text-white text-base">
                   {dailyRequests} Million / day
                 </span>
-              </div>
+              </label>
               <input
+                id="roi-daily-requests"
+                aria-label="Daily API Requests and Events"
                 type="range"
                 min="5"
                 max="250"
@@ -104,13 +108,15 @@ export function RoiCalculator() {
 
             {/* Slider 3: Engineering Team Size */}
             <div className="space-y-3 pt-2">
-              <div className="flex justify-between text-sm">
+              <label htmlFor="roi-team-size" className="flex justify-between text-sm cursor-pointer">
                 <span className="text-slate-700 dark:text-slate-300 font-medium">Engineering Team Size:</span>
                 <span className="font-mono font-bold text-slate-900 dark:text-white text-base">
                   {teamSize} Engineers
                 </span>
-              </div>
+              </label>
               <input
+                id="roi-team-size"
+                aria-label="Engineering Team Size"
                 type="range"
                 min="5"
                 max="200"

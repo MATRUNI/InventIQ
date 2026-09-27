@@ -91,12 +91,7 @@ HAVING total_events > 1000000;`,
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Headlines & Call to Actions */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 space-y-6 text-center lg:text-left"
-          >
+          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             {/* Top Pill */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -113,28 +108,18 @@ HAVING total_events > 1000000;`,
             </motion.div>
 
             {/* Main Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] text-slate-950 dark:text-white"
-            >
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] text-slate-950 dark:text-white">
               Engineering Next-Gen{" "}
               <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-emerald-600 dark:from-indigo-400 dark:via-blue-400 dark:to-emerald-300 bg-clip-text text-transparent">
                 Autonomous AI
               </span>{" "}
               & Cloud Architectures
-            </motion.h1>
+            </h1>
 
             {/* Subheading */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.7 }}
-              className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal"
-            >
+            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
               We design and scale sovereign generative AI pipelines, ultra-low latency microservice meshes, and real-time streaming lakehouses handling millions of requests per second.
-            </motion.p>
+            </p>
 
             {/* CTA Group */}
             <motion.div
@@ -183,7 +168,7 @@ HAVING total_events > 1000000;`,
                 <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">SLA Availability</span>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Interactive Code & Architecture Telemetry Card */}
           <motion.div
