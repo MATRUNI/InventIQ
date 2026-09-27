@@ -21,7 +21,6 @@ export function HeroSection() {
   const codeSnippets = {
     ai: {
       file: "rag-agent-pipeline.ts",
-      command: "npx @inventiq/ai-core deploy --region global",
       code: `// Sovereign Enterprise RAG with Sub-10ms Vector Search
 import { SovereignAI, VectorPipeline } from '@inventiq/ai-core';
 
@@ -40,7 +39,6 @@ const response = await agent.query({
     },
     cloud: {
       file: "ebpf-mesh-routing.go",
-      command: "kubectl inventiq mesh apply -f mesh-topology.yaml",
       code: `// Multi-Region eBPF Traffic Mesh with Active-Active Failover
 package main
 
@@ -56,7 +54,6 @@ func RouteHighThroughputTraffic(packet *ebpf.Packet) error {
     },
     data: {
       file: "realtime-lakehouse-stream.sql",
-      command: "inventiq stream ingest --rate 3.2m-events/sec",
       code: `-- Sub-Second Event Processing Lakehouse
 SELECT
   tenant_id,
@@ -91,22 +88,22 @@ HAVING total_events > 1000000;`,
               <Badge variant="indigo" dot>
                 Enterprise Tech Platform
               </Badge>
-              <span className="text-xs text-slate-400 font-medium hidden sm:inline-block">
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:inline-block">
                 Sub-Second Core Web Vitals • SOC2 Type II
               </span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] text-white">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] text-slate-950 dark:text-white">
               Engineering Next-Gen{" "}
-              <span className="bg-gradient-to-r from-indigo-400 via-blue-400 to-emerald-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-emerald-600 dark:from-indigo-400 dark:via-blue-400 dark:to-emerald-300 bg-clip-text text-transparent">
                 Autonomous AI
               </span>{" "}
               & Cloud Architectures
             </h1>
 
             {/* Subheading */}
-            <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
               We design and scale sovereign generative AI pipelines, ultra-low latency microservice meshes, and real-time streaming lakehouses handling millions of requests per second.
             </p>
 
@@ -120,31 +117,31 @@ HAVING total_events > 1000000;`,
               </a>
               <a href="#solutions" className="w-full sm:w-auto">
                 <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                  <Layers className="w-4 h-4 mr-1 text-indigo-400" />
+                  <Layers className="w-4 h-4 mr-1 text-indigo-600 dark:text-indigo-400" />
                   <span>Explore Solutions</span>
                 </Button>
               </a>
             </div>
 
             {/* Trust Metrics Row */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80 max-w-xl mx-auto lg:mx-0">
+            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800/80 max-w-xl mx-auto lg:mx-0">
               <div className="flex flex-col">
-                <span className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  2.4M<span className="text-indigo-400 text-lg">+</span>
+                <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+                  2.4M<span className="text-indigo-600 dark:text-indigo-400 text-lg">+</span>
                 </span>
-                <span className="text-xs text-slate-400 font-medium">TPS Handled</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">TPS Handled</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl sm:text-3xl font-bold text-emerald-400 tracking-tight">
+                <span className="text-2xl sm:text-3xl font-bold text-emerald-600 dark:text-emerald-400 tracking-tight">
                   &lt;12ms
                 </span>
-                <span className="text-xs text-slate-400 font-medium">p99 Settlement</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">p99 Settlement</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl sm:text-3xl font-bold text-cyan-400 tracking-tight">
+                <span className="text-2xl sm:text-3xl font-bold text-cyan-600 dark:text-cyan-400 tracking-tight">
                   99.999%
                 </span>
-                <span className="text-xs text-slate-400 font-medium">SLA Availability</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">SLA Availability</span>
               </div>
             </div>
           </div>
@@ -153,10 +150,10 @@ HAVING total_events > 1000000;`,
           <div className="lg:col-span-5">
             <div className="relative group">
               {/* Neon border blur halo */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-blue-500 to-emerald-500 rounded-2xl blur-lg opacity-30 group-hover:opacity-60 transition duration-500" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-blue-500 to-emerald-500 rounded-2xl blur-lg opacity-25 dark:opacity-30 group-hover:opacity-50 transition duration-500" />
 
               {/* Terminal Window Card */}
-              <div className="relative rounded-2xl bg-[#0B0F19] border border-slate-800 shadow-2xl overflow-hidden">
+              <div className="relative rounded-2xl bg-[#0B0F19] border border-slate-800 shadow-2xl overflow-hidden text-slate-200">
                 {/* Terminal Header */}
                 <div className="flex items-center justify-between px-4 py-3 bg-[#111827] border-b border-slate-800/80">
                   <div className="flex items-center gap-2">
@@ -171,7 +168,7 @@ HAVING total_events > 1000000;`,
 
                   <button
                     onClick={handleCopy}
-                    className="p-1.5 rounded text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                    className="p-1.5 rounded text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
                     title="Copy code"
                   >
                     {copied ? (
@@ -186,7 +183,7 @@ HAVING total_events > 1000000;`,
                 <div className="flex items-center bg-[#090D16]/90 px-3 py-1.5 border-b border-slate-800/60 text-xs">
                   <button
                     onClick={() => setActiveTab("ai")}
-                    className={`px-3 py-1 rounded-md font-medium transition-all ${
+                    className={`px-3 py-1 rounded-md font-medium transition-all cursor-pointer ${
                       activeTab === "ai"
                         ? "bg-indigo-600/30 text-indigo-300 border border-indigo-500/40"
                         : "text-slate-400 hover:text-slate-200"
@@ -196,7 +193,7 @@ HAVING total_events > 1000000;`,
                   </button>
                   <button
                     onClick={() => setActiveTab("cloud")}
-                    className={`px-3 py-1 rounded-md font-medium transition-all ${
+                    className={`px-3 py-1 rounded-md font-medium transition-all cursor-pointer ${
                       activeTab === "cloud"
                         ? "bg-blue-600/30 text-blue-300 border border-blue-500/40"
                         : "text-slate-400 hover:text-slate-200"
@@ -206,7 +203,7 @@ HAVING total_events > 1000000;`,
                   </button>
                   <button
                     onClick={() => setActiveTab("data")}
-                    className={`px-3 py-1 rounded-md font-medium transition-all ${
+                    className={`px-3 py-1 rounded-md font-medium transition-all cursor-pointer ${
                       activeTab === "data"
                         ? "bg-emerald-600/30 text-emerald-300 border border-emerald-500/40"
                         : "text-slate-400 hover:text-slate-200"

@@ -44,7 +44,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  // Structured Data (JSON-LD) for Search Engines
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -76,7 +75,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090D16] text-[#F9FAFB] flex flex-col selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] flex flex-col selection:bg-indigo-500 selection:text-white transition-colors duration-200">
       {/* Search Engine Schemas */}
       <script
         type="application/ld+json"

@@ -4,9 +4,9 @@ import { ArrowRight, Sparkles, Terminal, ShieldCheck } from "lucide-react";
 
 export function CtaBanner() {
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl bg-gradient-to-r from-indigo-950 via-[#111827] to-slate-900 border border-indigo-500/40 p-8 sm:p-14 overflow-hidden shadow-2xl">
+        <div className="relative rounded-3xl bg-gradient-to-r from-indigo-950 via-[#111827] to-slate-900 border border-indigo-500/40 p-8 sm:p-14 overflow-hidden shadow-2xl text-white">
           {/* Glowing backdrops */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/20 blur-[100px] rounded-full pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-500/15 blur-[100px] rounded-full pointer-events-none" />
@@ -34,7 +34,7 @@ export function CtaBanner() {
               </a>
 
               <a href="#case-studies" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-slate-900/60 border-slate-700 text-white hover:bg-slate-800">
                   <span>Explore Case Studies</span>
                 </Button>
               </a>

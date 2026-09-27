@@ -14,7 +14,6 @@ import {
   CheckCircle,
   Code2,
   ArrowRight,
-  ExternalLink,
 } from "lucide-react";
 
 export function SolutionsSection() {
@@ -35,20 +34,20 @@ export function SolutionsSection() {
       : SOLUTIONS_DATA.filter((s) => s.category === selectedCategory);
 
   return (
-    <section id="solutions" className="py-24 bg-[#070B14] relative">
+    <section id="solutions" className="py-24 bg-slate-50/70 dark:bg-[#070B14] relative transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
           <Badge variant="blue" dot>
             Engineered Solutions
           </Badge>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-950 dark:text-white">
             Enterprise Solutions &{" "}
-            <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-600 dark:from-blue-400 dark:via-indigo-400 dark:to-emerald-400 bg-clip-text text-transparent">
               Product Offerings
             </span>
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg">
+          <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg">
             Proven architectures deployed across Tier-1 financial institutions, healthcare providers, and high-scale consumer enterprises.
           </p>
         </div>
@@ -64,11 +63,11 @@ export function SolutionsSection() {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer border ${
                   isActive
-                    ? "bg-indigo-600/20 text-indigo-300 border-indigo-500/50 shadow-lg shadow-indigo-500/10"
-                    : "bg-[#111827]/80 text-slate-400 border-slate-800 hover:text-white hover:border-slate-700"
+                    ? "bg-indigo-50 dark:bg-indigo-600/20 text-indigo-700 dark:text-indigo-300 border-indigo-300 dark:border-indigo-500/50 shadow-sm"
+                    : "bg-white dark:bg-[#111827]/80 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700"
                 }`}
               >
-                <Icon className={`w-4 h-4 ${isActive ? "text-indigo-400" : "text-slate-400"}`} />
+                <Icon className={`w-4 h-4 ${isActive ? "text-indigo-600 dark:text-indigo-400" : "text-slate-400"}`} />
                 <span>{cat.label}</span>
               </button>
             );
@@ -80,35 +79,35 @@ export function SolutionsSection() {
           {filteredSolutions.map((solution) => (
             <div
               key={solution.id}
-              className="rounded-2xl bg-gradient-to-b from-[#111827] to-[#0D131F] border border-slate-800 p-8 flex flex-col justify-between hover:border-indigo-500/40 transition-all duration-300 shadow-xl group"
+              className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0D131F] border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-indigo-400 dark:hover:border-indigo-500/40 transition-all duration-300 shadow-md dark:shadow-xl group"
             >
               <div className="space-y-6">
                 {/* Header row */}
                 <div className="flex items-center justify-between gap-4">
                   <Badge variant="indigo">{solution.badge}</Badge>
-                  <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                  <span className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     {solution.category}
                   </span>
                 </div>
 
                 {/* Title & Tagline */}
                 <div>
-                  <h3 className="text-2xl font-bold text-white tracking-tight group-hover:text-indigo-300 transition-colors">
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
                     {solution.title}
                   </h3>
-                  <p className="text-slate-300 mt-2 text-sm leading-relaxed">
+                  <p className="text-slate-600 dark:text-slate-300 mt-2 text-sm leading-relaxed">
                     {solution.description}
                   </p>
                 </div>
 
                 {/* Metrics Matrix */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3 border-y border-slate-800/80">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3 border-y border-slate-100 dark:border-slate-800/80">
                   {solution.metrics.map((m, idx) => (
                     <div key={idx} className="flex flex-col">
-                      <span className="text-base font-bold font-mono text-emerald-400">
+                      <span className="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400">
                         {m.value}
                       </span>
-                      <span className="text-[11px] text-slate-400 font-medium">
+                      <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                         {m.label}
                       </span>
                     </div>
@@ -118,8 +117,8 @@ export function SolutionsSection() {
                 {/* Key Architectural Features */}
                 <ul className="space-y-2">
                   {solution.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                      <CheckCircle className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
+                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-600 dark:text-slate-300">
+                      <CheckCircle className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -130,7 +129,7 @@ export function SolutionsSection() {
                   {solution.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 border border-slate-800 text-slate-300"
+                      className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300"
                     >
                       {tech}
                     </span>
@@ -139,19 +138,19 @@ export function SolutionsSection() {
               </div>
 
               {/* Action Button */}
-              <div className="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between">
+              <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                 <Button
                   onClick={() => setActiveModalSolution(solution)}
                   variant="outline"
                   size="sm"
                   className="gap-2 text-xs"
                 >
-                  <Code2 className="w-4 h-4 text-indigo-400" />
+                  <Code2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                   <span>View Technical Specs</span>
                 </Button>
 
                 <a href="#contact">
-                  <Button variant="ghost" size="sm" className="gap-1 text-xs text-slate-400 hover:text-white">
+                  <Button variant="ghost" size="sm" className="gap-1 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
                     <span>Deploy Solution</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Button>
@@ -172,30 +171,30 @@ export function SolutionsSection() {
         >
           <div className="space-y-6">
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-indigo-400 mb-2">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
                 Executive Overview
               </h4>
-              <p className="text-slate-300 text-sm leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                 {activeModalSolution.description}
               </p>
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-emerald-400 mb-3">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-3">
                 Production Performance Benchmarks
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {activeModalSolution.metrics.map((m, idx) => (
-                  <div key={idx} className="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
-                    <div className="text-lg font-bold font-mono text-emerald-400">{m.value}</div>
-                    <div className="text-xs text-slate-400 mt-0.5">{m.label}</div>
+                  <div key={idx} className="bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-xl p-3">
+                    <div className="text-lg font-bold font-mono text-emerald-600 dark:text-emerald-400">{m.value}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{m.label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-2">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
                 Reference Implementation Architecture
               </h4>
               <div className="rounded-xl bg-[#070A10] border border-slate-800 p-4 font-mono text-xs overflow-x-auto text-slate-200">
@@ -211,8 +210,8 @@ export function SolutionsSection() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
-              <span className="text-xs text-slate-400">
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <span className="text-xs text-slate-500 dark:text-slate-400">
                 Full integration documentation available upon architecture sign-off.
               </span>
               <a href="#contact" onClick={() => setActiveModalSolution(null)}>

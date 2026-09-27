@@ -15,8 +15,6 @@ import {
   MessageSquare,
   ShieldAlert,
   Clock,
-  Sparkles,
-  PhoneCall,
   CheckCircle2,
 } from "lucide-react";
 
@@ -97,7 +95,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-[#090D16]">
+    <section id="contact" className="py-24 relative overflow-hidden bg-transparent transition-colors duration-200">
       {/* Background glow highlights */}
       <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-indigo-600/10 blur-[130px] rounded-full pointer-events-none -z-10" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-emerald-600/10 blur-[120px] rounded-full pointer-events-none -z-10" />
@@ -110,50 +108,50 @@ export function ContactSection() {
               <Badge variant="indigo" dot>
                 Direct Access to Principal Architects
               </Badge>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-950 dark:text-white leading-tight">
                 Schedule Your{" "}
-                <span className="bg-gradient-to-r from-indigo-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-emerald-600 dark:from-indigo-400 dark:via-blue-400 dark:to-emerald-400 bg-clip-text text-transparent">
                   Architecture Review
                 </span>
               </h2>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
                 Connect directly with our Principal Solutions Architects. We do not do high-pressure sales pitches—we conduct concrete technical reviews of your bottlenecks, cost leaks, and scale requirements.
               </p>
             </div>
 
             {/* Value Guarantees */}
             <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-3 bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
-                <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="text-xs font-bold text-white uppercase tracking-wider">
+                  <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                     Strict Non-Disclosure Guarantee
                   </h3>
-                  <p className="text-xs text-slate-400 mt-0.5">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                     We execute mutual NDAs prior to any code or infrastructure telemetry inspection.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
-                <Clock className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
+                <Clock className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="text-xs font-bold text-white uppercase tracking-wider">
+                  <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                     4-Hour Business SLA Response
                   </h3>
-                  <p className="text-xs text-slate-400 mt-0.5">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                     Every inbound inquiry is reviewed by an Engineering Director, not an automated sales bot.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
-                <ShieldAlert className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
+                <ShieldAlert className="w-5 h-5 text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="text-xs font-bold text-white uppercase tracking-wider">
+                  <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                     Comprehensive Technical Blueprint
                   </h3>
-                  <p className="text-xs text-slate-400 mt-0.5">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                     Receive a 12-page written architectural roadmap with latency estimates and FinOps savings.
                   </p>
                 </div>
@@ -161,28 +159,28 @@ export function ContactSection() {
             </div>
 
             {/* Direct Channels */}
-            <div className="pt-4 border-t border-slate-800 text-xs text-slate-400 space-y-2 font-mono">
-              <div>Direct Enterprise Email: <span className="text-white">architects@inventiq.tech</span></div>
-              <div>Global Response Center: <span className="text-white">San Francisco • London • Singapore</span></div>
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 space-y-2 font-mono">
+              <div>Direct Enterprise Email: <span className="text-slate-900 dark:text-white font-medium">architects@inventiq.tech</span></div>
+              <div>Global Response Center: <span className="text-slate-900 dark:text-white font-medium">San Francisco • London • Singapore</span></div>
             </div>
           </div>
 
           {/* Right Column: Interactive Lead Gen Form */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl bg-gradient-to-b from-[#111827] to-[#0A0E18] border border-slate-800 p-8 sm:p-10 shadow-2xl relative">
+            <div className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0A0E18] border border-slate-200 dark:border-slate-800 p-8 sm:p-10 shadow-lg dark:shadow-2xl relative">
               {/* Submission status feedback toast */}
               {submissionResult && (
                 <div
                   className={`mb-6 p-4 rounded-xl border flex items-start gap-3 ${
                     submissionResult.success
-                      ? "bg-emerald-950/60 border-emerald-500/40 text-emerald-200"
-                      : "bg-rose-950/60 border-rose-500/40 text-rose-200"
+                      ? "bg-emerald-50 dark:bg-emerald-950/60 border-emerald-300 dark:border-emerald-500/40 text-emerald-800 dark:text-emerald-200"
+                      : "bg-rose-50 dark:bg-rose-950/60 border-rose-300 dark:border-rose-500/40 text-rose-800 dark:text-rose-200"
                   }`}
                 >
                   {submissionResult.success ? (
-                    <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                   ) : (
-                    <ShieldAlert className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+                    <ShieldAlert className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
                   )}
                   <div>
                     <div className="font-semibold text-sm">
@@ -211,7 +209,7 @@ export function ContactSection() {
                 {/* Name & Work Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                       <User className="w-3.5 h-3.5 text-slate-400" />
                       Full Name *
                     </label>
@@ -219,17 +217,17 @@ export function ContactSection() {
                       type="text"
                       placeholder="e.g. Elena Rostova"
                       {...register("name")}
-                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
-                        errors.name ? "border-rose-500" : "border-slate-800"
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
+                        errors.name ? "border-rose-500" : "border-slate-300 dark:border-slate-800"
                       }`}
                     />
                     {errors.name && (
-                      <p className="text-[11px] text-rose-400 font-medium">{errors.name.message}</p>
+                      <p className="text-[11px] text-rose-500 dark:text-rose-400 font-medium">{errors.name.message}</p>
                     )}
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                       <Mail className="w-3.5 h-3.5 text-slate-400" />
                       Work Email *
                     </label>
@@ -237,12 +235,12 @@ export function ContactSection() {
                       type="email"
                       placeholder="name@company.com"
                       {...register("email")}
-                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
-                        errors.email ? "border-rose-500" : "border-slate-800"
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
+                        errors.email ? "border-rose-500" : "border-slate-300 dark:border-slate-800"
                       }`}
                     />
                     {errors.email && (
-                      <p className="text-[11px] text-rose-400 font-medium">{errors.email.message}</p>
+                      <p className="text-[11px] text-rose-500 dark:text-rose-400 font-medium">{errors.email.message}</p>
                     )}
                   </div>
                 </div>
@@ -250,7 +248,7 @@ export function ContactSection() {
                 {/* Company & Primary Service Area */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                       <Building className="w-3.5 h-3.5 text-slate-400" />
                       Company Name *
                     </label>
@@ -258,44 +256,44 @@ export function ContactSection() {
                       type="text"
                       placeholder="e.g. Apex Global"
                       {...register("company")}
-                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
-                        errors.company ? "border-rose-500" : "border-slate-800"
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
+                        errors.company ? "border-rose-500" : "border-slate-300 dark:border-slate-800"
                       }`}
                     />
                     {errors.company && (
-                      <p className="text-[11px] text-rose-400 font-medium">{errors.company.message}</p>
+                      <p className="text-[11px] text-rose-500 dark:text-rose-400 font-medium">{errors.company.message}</p>
                     )}
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">
+                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                       Primary Service Focus *
                     </label>
                     <select
                       {...register("service")}
-                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
-                        errors.service ? "border-rose-500" : "border-slate-800"
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
+                        errors.service ? "border-rose-500" : "border-slate-300 dark:border-slate-800"
                       }`}
                     >
-                      <option value="" className="bg-[#111827]">Select Architecture Track</option>
-                      <option value="Generative AI & Agent Systems" className="bg-[#111827]">
+                      <option value="" className="bg-white dark:bg-[#111827]">Select Architecture Track</option>
+                      <option value="Generative AI & Agent Systems" className="bg-white dark:bg-[#111827]">
                         Generative AI & Agent Systems
                       </option>
-                      <option value="Multi-Cloud & Kubernetes Mesh" className="bg-[#111827]">
+                      <option value="Multi-Cloud & Kubernetes Mesh" className="bg-white dark:bg-[#111827]">
                         Multi-Cloud & Kubernetes Mesh
                       </option>
-                      <option value="Streaming Lakehouse & Data Platform" className="bg-[#111827]">
+                      <option value="Streaming Lakehouse & Data Platform" className="bg-white dark:bg-[#111827]">
                         Streaming Lakehouse & Data Platform
                       </option>
-                      <option value="Edge APIs & Micro-Frontends" className="bg-[#111827]">
+                      <option value="Edge APIs & Micro-Frontends" className="bg-white dark:bg-[#111827]">
                         Edge APIs & Micro-Frontends
                       </option>
-                      <option value="Comprehensive Architecture Audit" className="bg-[#111827]">
+                      <option value="Comprehensive Architecture Audit" className="bg-white dark:bg-[#111827]">
                         Comprehensive Architecture Audit
                       </option>
                     </select>
                     {errors.service && (
-                      <p className="text-[11px] text-rose-400 font-medium">{errors.service.message}</p>
+                      <p className="text-[11px] text-rose-500 dark:text-rose-400 font-medium">{errors.service.message}</p>
                     )}
                   </div>
                 </div>
@@ -303,51 +301,51 @@ export function ContactSection() {
                 {/* Budget & Target Timeline */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">
+                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                       Estimated Project Scope / Budget *
                     </label>
                     <select
                       {...register("budget")}
-                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
-                        errors.budget ? "border-rose-500" : "border-slate-800"
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
+                        errors.budget ? "border-rose-500" : "border-slate-300 dark:border-slate-800"
                       }`}
                     >
-                      <option value="" className="bg-[#111827]">Select Budget Range</option>
-                      <option value="$25k - $50k" className="bg-[#111827]">$25k - $50k (Assessment / PoC)</option>
-                      <option value="$50k - $150k" className="bg-[#111827]">$50k - $150k (Production Service)</option>
-                      <option value="$150k - $500k" className="bg-[#111827]">$150k - $500k (Full Modernization)</option>
-                      <option value="$500k+" className="bg-[#111827]">$500k+ (Enterprise Overhaul)</option>
+                      <option value="" className="bg-white dark:bg-[#111827]">Select Budget Range</option>
+                      <option value="$25k - $50k" className="bg-white dark:bg-[#111827]">$25k - $50k (Assessment / PoC)</option>
+                      <option value="$50k - $150k" className="bg-white dark:bg-[#111827]">$50k - $150k (Production Service)</option>
+                      <option value="$150k - $500k" className="bg-white dark:bg-[#111827]">$150k - $500k (Full Modernization)</option>
+                      <option value="$500k+" className="bg-white dark:bg-[#111827]">$500k+ (Enterprise Overhaul)</option>
                     </select>
                     {errors.budget && (
-                      <p className="text-[11px] text-rose-400 font-medium">{errors.budget.message}</p>
+                      <p className="text-[11px] text-rose-500 dark:text-rose-400 font-medium">{errors.budget.message}</p>
                     )}
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300">
+                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                       Target Implementation Timeline *
                     </label>
                     <select
                       {...register("timeline")}
-                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
-                        errors.timeline ? "border-rose-500" : "border-slate-800"
+                      className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
+                        errors.timeline ? "border-rose-500" : "border-slate-300 dark:border-slate-800"
                       }`}
                     >
-                      <option value="" className="bg-[#111827]">Select Target Timeline</option>
-                      <option value="Immediate (< 30 days)" className="bg-[#111827]">Immediate (&lt; 30 days)</option>
-                      <option value="1 to 3 months" className="bg-[#111827]">1 to 3 months</option>
-                      <option value="3 to 6 months" className="bg-[#111827]">3 to 6 months</option>
-                      <option value="Exploratory / Planning" className="bg-[#111827]">Exploratory / Planning</option>
+                      <option value="" className="bg-white dark:bg-[#111827]">Select Target Timeline</option>
+                      <option value="Immediate (< 30 days)" className="bg-white dark:bg-[#111827]">Immediate (&lt; 30 days)</option>
+                      <option value="1 to 3 months" className="bg-white dark:bg-[#111827]">1 to 3 months</option>
+                      <option value="3 to 6 months" className="bg-white dark:bg-[#111827]">3 to 6 months</option>
+                      <option value="Exploratory / Planning" className="bg-white dark:bg-[#111827]">Exploratory / Planning</option>
                     </select>
                     {errors.timeline && (
-                      <p className="text-[11px] text-rose-400 font-medium">{errors.timeline.message}</p>
+                      <p className="text-[11px] text-rose-500 dark:text-rose-400 font-medium">{errors.timeline.message}</p>
                     )}
                   </div>
                 </div>
 
                 {/* Message */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                  <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                     <MessageSquare className="w-3.5 h-3.5 text-slate-400" />
                     Architecture Objectives & Requirements *
                   </label>
@@ -355,12 +353,12 @@ export function ContactSection() {
                     rows={4}
                     placeholder="Briefly describe your existing architecture, performance bottlenecks, or GenAI use case..."
                     {...register("message")}
-                    className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
-                      errors.message ? "border-rose-500" : "border-slate-800"
+                    className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors ${
+                      errors.message ? "border-rose-500" : "border-slate-300 dark:border-slate-800"
                     }`}
                   />
                   {errors.message && (
-                    <p className="text-[11px] text-rose-400 font-medium">{errors.message.message}</p>
+                    <p className="text-[11px] text-rose-500 dark:text-rose-400 font-medium">{errors.message.message}</p>
                   )}
                 </div>
 
@@ -376,7 +374,7 @@ export function ContactSection() {
                   <span>Submit Architecture Inquiry</span>
                 </Button>
 
-                <p className="text-[11px] text-center text-slate-400">
+                <p className="text-[11px] text-center text-slate-500 dark:text-slate-400">
                   By submitting, you agree to our standard mutual enterprise confidentiality agreement.
                 </p>
               </form>
