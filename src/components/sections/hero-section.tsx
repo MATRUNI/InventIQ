@@ -182,26 +182,27 @@ HAVING total_events > 1000000;`,
               <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-blue-500 to-emerald-500 rounded-2xl blur-lg opacity-25 dark:opacity-30 group-hover:opacity-50 transition duration-500" />
 
               {/* Terminal Window Card */}
-              <div className="relative rounded-2xl bg-[#0B0F19] border border-slate-800 shadow-2xl overflow-hidden text-slate-200">
+              <div className="relative rounded-2xl bg-white dark:bg-[#0B0F19] border border-slate-200 dark:border-slate-800 shadow-xl dark:shadow-2xl overflow-hidden text-slate-800 dark:text-slate-200 transition-colors duration-200">
                 {/* Terminal Header */}
-                <div className="flex items-center justify-between px-4 py-3 bg-[#111827] border-b border-slate-800/80">
+                <div className="flex items-center justify-between px-4 py-3 bg-slate-100/90 dark:bg-[#111827] border-b border-slate-200 dark:border-slate-800/80 transition-colors duration-200">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-red-500/80" />
                     <div className="h-3 w-3 rounded-full bg-amber-500/80" />
                     <div className="h-3 w-3 rounded-full bg-emerald-500/80" />
-                    <span className="ml-2 text-xs font-mono text-slate-400 flex items-center gap-1.5">
-                      <Terminal className="w-3.5 h-3.5 text-indigo-400" />
+                    <span className="ml-2 text-xs font-mono text-slate-600 dark:text-slate-400 flex items-center gap-1.5 font-medium">
+                      <Terminal className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
                       {codeSnippets[activeTab].file}
                     </span>
                   </div>
 
                   <button
                     onClick={handleCopy}
-                    className="p-1.5 rounded text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+                    className="p-1.5 rounded text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer"
                     title="Copy code"
+                    aria-label="Copy code snippet to clipboard"
                   >
                     {copied ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                     ) : (
                       <Copy className="w-3.5 h-3.5" />
                     )}
@@ -209,43 +210,43 @@ HAVING total_events > 1000000;`,
                 </div>
 
                 {/* Architecture Select Tabs */}
-                <div className="flex items-center bg-[#090D16]/90 px-3 py-1.5 border-b border-slate-800/60 text-xs">
+                <div className="flex items-center bg-slate-50/90 dark:bg-[#090D16]/90 px-3 py-1.5 border-b border-slate-200 dark:border-slate-800/60 text-xs transition-colors duration-200">
                   <button
                     onClick={() => setActiveTab("ai")}
-                    className={`px-3 py-1 rounded-md font-medium transition-all cursor-pointer ${
+                    className={`px-3 py-1 rounded-md font-medium transition-all cursor-pointer border ${
                       activeTab === "ai"
-                        ? "bg-indigo-600/30 text-indigo-300 border border-indigo-500/40"
-                        : "text-slate-400 hover:text-slate-200"
+                        ? "bg-indigo-50 dark:bg-indigo-600/30 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-500/40 shadow-sm"
+                        : "border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
                     }`}
                   >
                     GenAI RAG Enclave
                   </button>
                   <button
                     onClick={() => setActiveTab("cloud")}
-                    className={`px-3 py-1 rounded-md font-medium transition-all cursor-pointer ${
+                    className={`px-3 py-1 rounded-md font-medium transition-all cursor-pointer border ${
                       activeTab === "cloud"
-                        ? "bg-blue-600/30 text-blue-300 border border-blue-500/40"
-                        : "text-slate-400 hover:text-slate-200"
+                        ? "bg-blue-50 dark:bg-blue-600/30 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-500/40 shadow-sm"
+                        : "border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
                     }`}
                   >
                     eBPF Mesh
                   </button>
                   <button
                     onClick={() => setActiveTab("data")}
-                    className={`px-3 py-1 rounded-md font-medium transition-all cursor-pointer ${
+                    className={`px-3 py-1 rounded-md font-medium transition-all cursor-pointer border ${
                       activeTab === "data"
-                        ? "bg-emerald-600/30 text-emerald-300 border border-emerald-500/40"
-                        : "text-slate-400 hover:text-slate-200"
+                        ? "bg-emerald-50 dark:bg-emerald-600/30 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-500/40 shadow-sm"
+                        : "border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
                     }`}
                   >
                     Stream Lakehouse
                   </button>
                 </div>
 
-                {/* Code Body with Framer Motion tab transition */}
-                <div className="p-4 font-mono text-xs text-slate-200 bg-[#070A10] overflow-x-auto min-h-[220px]">
+                {/* Code Body with Framer Motion tab transition & Syntax Highlights */}
+                <div className="p-4 font-mono text-xs bg-slate-950 dark:bg-[#070A10] text-slate-200 overflow-x-auto min-h-[220px]">
                   <AnimatePresence mode="wait">
-                    <motion.pre
+                    <motion.div
                       key={activeTab}
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -253,23 +254,82 @@ HAVING total_events > 1000000;`,
                       transition={{ duration: 0.2 }}
                       className="leading-relaxed"
                     >
-                      <code>{codeSnippets[activeTab].code}</code>
-                    </motion.pre>
+                      {activeTab === "ai" && (
+                        <div className="space-y-1">
+                          <div className="text-slate-500 dark:text-slate-400 italic">// Sovereign Enterprise RAG with Sub-10ms Vector Search</div>
+                          <div>
+                            <span className="text-purple-400 dark:text-purple-300 font-semibold">import</span> &#123; <span className="text-cyan-400 dark:text-cyan-300">SovereignAI</span>, <span className="text-cyan-400 dark:text-cyan-300">VectorPipeline</span> &#125; <span className="text-purple-400 dark:text-purple-300 font-semibold">from</span> <span className="text-emerald-400 dark:text-emerald-300">&apos;@inventiq/ai-core&apos;</span>;
+                          </div>
+                          <div className="pt-1.5">
+                            <span className="text-purple-400 dark:text-purple-300 font-semibold">export const</span> <span className="text-indigo-400 dark:text-indigo-300">agent</span> = <span className="text-purple-400 dark:text-purple-300 font-semibold">new</span> <span className="text-cyan-400 dark:text-cyan-300">SovereignAI.Agent</span>(&#123;
+                          </div>
+                          <div className="pl-4 text-slate-300 dark:text-slate-200">
+                            <div>knowledgeBase: <span className="text-emerald-400 dark:text-emerald-300">&apos;enterprise-vault-v4&apos;</span>,</div>
+                            <div>vectorBackend: <span className="text-emerald-400 dark:text-emerald-300">&apos;qdrant-dense-sparse&apos;</span>,</div>
+                            <div>latencyThresholdMs: <span className="text-amber-400 dark:text-amber-300">12</span>,</div>
+                            <div>securityEnclave: <span className="text-emerald-400 dark:text-emerald-300">&apos;CONFIDENTIAL_COMPUTE&apos;</span>,</div>
+                            <div>auditLogging: <span className="text-amber-400 dark:text-amber-300">true</span></div>
+                          </div>
+                          <div>&#125;);</div>
+                          <div className="pt-1.5">
+                            <span className="text-purple-400 dark:text-purple-300 font-semibold">const</span> <span className="text-indigo-400 dark:text-indigo-300">response</span> = <span className="text-purple-400 dark:text-purple-300 font-semibold">await</span> agent.<span className="text-blue-400 dark:text-blue-300">query</span>(&#123;
+                          </div>
+                          <div className="pl-4 text-slate-300 dark:text-slate-200">
+                            <div>input: <span className="text-emerald-400 dark:text-emerald-300">&quot;Generate real-time settlement risk analysis&quot;</span>,</div>
+                            <div>guardrails: [<span className="text-emerald-400 dark:text-emerald-300">&quot;PII_REDACTION&quot;</span>, <span className="text-emerald-400 dark:text-emerald-300">&quot;ANTI_HALLUCINATION&quot;</span>]</div>
+                          </div>
+                          <div>&#125;);</div>
+                        </div>
+                      )}
+
+                      {activeTab === "cloud" && (
+                        <div className="space-y-1">
+                          <div className="text-slate-500 dark:text-slate-400 italic">// Multi-Region eBPF Traffic Mesh with Active-Active Failover</div>
+                          <div><span className="text-purple-400 dark:text-purple-300 font-semibold">package</span> <span className="text-indigo-400 dark:text-indigo-300">main</span></div>
+                          <div className="pt-1"><span className="text-purple-400 dark:text-purple-300 font-semibold">import</span> <span className="text-emerald-400 dark:text-emerald-300">&quot;github.com/inventiq/mesh/ebpf&quot;</span></div>
+                          <div className="pt-1.5"><span className="text-purple-400 dark:text-purple-300 font-semibold">func</span> <span className="text-blue-400 dark:text-blue-300">RouteHighThroughputTraffic</span>(packet *<span className="text-cyan-400 dark:text-cyan-300">ebpf.Packet</span>) <span className="text-cyan-400 dark:text-cyan-300">error</span> &#123;</div>
+                          <div className="pl-4 text-slate-300 dark:text-slate-200">
+                            <div>optimalPod := ebpf.<span className="text-blue-400 dark:text-blue-300">SelectTargetPod</span>(packet.TenantId, ebpf.MetricP99Latency)</div>
+                            <div className="pt-1"><span className="text-purple-400 dark:text-purple-300 font-semibold">if</span> optimalPod.P99Latency &gt; <span className="text-amber-400 dark:text-amber-300">15</span> &#123;</div>
+                            <div className="pl-4"><span className="text-purple-400 dark:text-purple-300 font-semibold">return</span> ebpf.<span className="text-blue-400 dark:text-blue-300">TriggerFastReroute</span>(packet, <span className="text-emerald-400 dark:text-emerald-300">&quot;canary-cluster&quot;</span>)</div>
+                            <div>&#125;</div>
+                            <div><span className="text-purple-400 dark:text-purple-300 font-semibold">return</span> ebpf.<span className="text-blue-400 dark:text-blue-300">ZeroCopyDispatch</span>(packet, optimalPod.Socket)</div>
+                          </div>
+                          <div>&#125;</div>
+                        </div>
+                      )}
+
+                      {activeTab === "data" && (
+                        <div className="space-y-1">
+                          <div className="text-slate-500 dark:text-slate-400 italic">-- Sub-Second Event Processing Lakehouse</div>
+                          <div><span className="text-purple-400 dark:text-purple-300 font-semibold">SELECT</span></div>
+                          <div className="pl-4 text-slate-300 dark:text-slate-200">
+                            <div>tenant_id, geo_cluster,</div>
+                            <div><span className="text-blue-400 dark:text-blue-300">quantile</span>(<span className="text-amber-400 dark:text-amber-300">0.99</span>)(request_latency_ms) <span className="text-purple-400 dark:text-purple-300 font-semibold">AS</span> p99_latency,</div>
+                            <div><span className="text-blue-400 dark:text-blue-300">sum</span>(events_processed) <span className="text-purple-400 dark:text-purple-300 font-semibold">AS</span> total_events,</div>
+                            <div><span className="text-blue-400 dark:text-blue-300">countIf</span>(anomaly_score &gt; <span className="text-amber-400 dark:text-amber-300">0.92</span>) <span className="text-purple-400 dark:text-purple-300 font-semibold">AS</span> fraud_events_blocked</div>
+                          </div>
+                          <div><span className="text-purple-400 dark:text-purple-300 font-semibold">FROM</span> stream_telemetry_5min</div>
+                          <div><span className="text-purple-400 dark:text-purple-300 font-semibold">GROUP BY</span> tenant_id, geo_cluster</div>
+                          <div><span className="text-purple-400 dark:text-purple-300 font-semibold">HAVING</span> total_events &gt; <span className="text-amber-400 dark:text-amber-300">1000000</span>;</div>
+                        </div>
+                      )}
+                    </motion.div>
                   </AnimatePresence>
                 </div>
 
                 {/* Live Telemetry Bar */}
-                <div className="p-3 bg-[#0E1524] border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono">
-                  <div className="flex items-center gap-2 text-emerald-400">
+                <div className="p-3 bg-slate-50 dark:bg-[#0E1524] border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-[11px] font-mono transition-colors duration-200">
+                  <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium">
                     <Activity className="w-3.5 h-3.5 animate-pulse" />
                     <span>Live Cluster: 1,480 pods</span>
                   </div>
-                  <div className="flex items-center gap-3 text-slate-400">
-                    <span className="flex items-center gap-1">
-                      <Zap className="w-3 h-3 text-amber-400" /> 8.4ms
+                  <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
+                    <span className="flex items-center gap-1 font-medium">
+                      <Zap className="w-3 h-3 text-amber-500 dark:text-amber-400" /> 8.4ms
                     </span>
-                    <span className="flex items-center gap-1">
-                      <Server className="w-3 h-3 text-cyan-400" /> 0.00% Err
+                    <span className="flex items-center gap-1 font-medium">
+                      <Server className="w-3 h-3 text-cyan-600 dark:text-cyan-400" /> 0.00% Err
                     </span>
                   </div>
                 </div>
