@@ -2,8 +2,20 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme inline {
+  --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-heading: var(--heading);
+}
+
 :root {
-  --background: #FAFAFA;
+  --background: #FFFFFF;
   --foreground: #090D16;
   --card: #FFFFFF;
   --card-elevated: #F8FAFC;
@@ -11,21 +23,14 @@
   --card-border: #E2E8F0;
   --card-hover-border: #CBD5E1;
   --nav-bg: rgba(255, 255, 255, 0.88);
-  --section-alt: #F1F5F9;
-  --code-surface: #0F172A;
-  --code-text: #E2E8F0;
-  --primary: #4F46E5;
-  --primary-accent: #2563EB;
-  --secondary-accent: #059669;
-  --violet-accent: #7C3AED;
+  --section-alt: #F8FAFC;
   --muted: #64748B;
   --muted-foreground: #475569;
   --heading: #090D16;
   --border: #E2E8F0;
-  --glow-indigo: rgba(79, 70, 229, 0.12);
-  --glow-cyan: rgba(37, 99, 235, 0.1);
-  --input-bg: #FFFFFF;
-  --input-border: #CBD5E1;
+  --primary: #4F46E5;
+  --primary-accent: #2563EB;
+  --secondary-accent: #059669;
 }
 
 .dark {
@@ -35,38 +40,34 @@
   --card-elevated: #0F172A;
   --card-foreground: #F9FAFB;
   --card-border: #1F2937;
-  --card-hover-border: rgba(99, 102, 241, 0.4);
+  --card-hover-border: rgba(99, 102, 241, 0.5);
   --nav-bg: rgba(9, 13, 22, 0.88);
-  --section-alt: #070B14;
-  --code-surface: #070A10;
-  --code-text: #F1F5F9;
-  --primary: #6366F1;
-  --primary-accent: #3B82F6;
-  --secondary-accent: #10B981;
-  --violet-accent: #8B5CF6;
+  --section-alt: #0D131F;
   --muted: #9CA3AF;
   --muted-foreground: #6B7280;
   --heading: #FFFFFF;
   --border: #1F2937;
-  --glow-indigo: rgba(99, 102, 241, 0.25);
-  --glow-cyan: rgba(59, 130, 246, 0.2);
-  --input-bg: rgba(15, 23, 42, 0.8);
-  --input-border: #1F2937;
+  --primary: #6366F1;
+  --primary-accent: #3B82F6;
+  --secondary-accent: #10B981;
 }
 
-body {
+* {
+  border-color: var(--border);
+}
+
+html, body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  letter-spacing: -0.015em;
-  overflow-x: hidden;
-  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -0.012em;
+  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  letter-spacing: -0.025em;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--heading);
+  letter-spacing: -0.025em;
 }
 
 /* Glassmorphism & Surface Utilities */
@@ -75,25 +76,6 @@ h1, h2, h3, h4, h5, h6 {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
-}
-
-.theme-card {
-  background-color: var(--card);
-  border: 1px solid var(--card-border);
-  color: var(--foreground);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.dark .theme-card:hover {
-  border-color: rgba(99, 102, 241, 0.5);
-  box-shadow: 0 12px 35px -10px rgba(99, 102, 241, 0.2);
-  transform: translateY(-2px);
-}
-
-.theme-card:hover {
-  border-color: var(--card-hover-border);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
 }
 
 /* Cyber grid pattern adapted for both dark and light modes */

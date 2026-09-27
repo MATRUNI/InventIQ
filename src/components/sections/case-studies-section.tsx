@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { CASE_STUDIES_DATA } from "@/lib/data";
 import { CaseStudyItem } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
@@ -31,7 +32,13 @@ export function CaseStudiesSection() {
     <section id="case-studies" className="py-24 relative overflow-hidden transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto space-y-4 mb-12"
+        >
           <Badge variant="emerald" dot>
             Verified Enterprise Impact
           </Badge>
@@ -44,7 +51,7 @@ export function CaseStudiesSection() {
           <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg">
             Explore how the world's most demanding enterprises scale without downtime using InventIQ architecture.
           </p>
-        </div>
+        </motion.div>
 
         {/* Industry Filter Pills */}
         <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar">
@@ -63,90 +70,98 @@ export function CaseStudiesSection() {
           ))}
         </div>
 
-        {/* Case Studies Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredStudies.map((study) => (
-            <div
-              key={study.slug}
-              className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0A0E18] border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:border-emerald-400 dark:hover:border-emerald-500/40 transition-all duration-300 shadow-md dark:shadow-xl group"
-            >
-              <div className="space-y-4">
-                {/* Header */}
-                <div className="flex items-center justify-between">
-                  <Badge variant="emerald">{study.industry}</Badge>
-                  <span className="flex items-center gap-1 text-[11px] font-mono text-slate-500 dark:text-slate-400">
-                    <Clock className="w-3 h-3 text-slate-400" />
-                    {study.readTime}
-                  </span>
-                </div>
-
-                {/* Title & Client */}
-                <div>
-                  <div className="flex items-center gap-1.5 text-xs text-indigo-600 dark:text-indigo-400 font-mono mb-1">
-                    <Building2 className="w-3.5 h-3.5" />
-                    <span>{study.client}</span>
+        {/* Case Studies Grid with AnimatePresence */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredStudies.map((study) => (
+              <motion.div
+                layout
+                key={study.slug}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.4 }}
+                whileHover={{ y: -4 }}
+                className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0A0E18] border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:border-emerald-400 dark:hover:border-emerald-500/40 transition-colors shadow-md dark:shadow-xl group"
+              >
+                <div className="space-y-4">
+                  {/* Header */}
+                  <div className="flex items-center justify-between">
+                    <Badge variant="emerald">{study.industry}</Badge>
+                    <span className="flex items-center gap-1 text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                      <Clock className="w-3 h-3 text-slate-400" />
+                      {study.readTime}
+                    </span>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors leading-snug">
-                    {study.title}
-                  </h3>
-                </div>
 
-                <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-3 leading-relaxed">
-                  {study.summary}
-                </p>
-
-                {/* Quantitative Impact Highlights */}
-                <div className="grid grid-cols-2 gap-2 pt-2 pb-1 border-y border-slate-100 dark:border-slate-800/80">
-                  {study.results.slice(0, 2).map((res, idx) => (
-                    <div key={idx} className="bg-slate-50 dark:bg-slate-900/70 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800/60">
-                      <div className="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400">
-                        {res.metric}
-                      </div>
-                      <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">{res.label}</div>
+                  {/* Title & Client */}
+                  <div>
+                    <div className="flex items-center gap-1.5 text-xs text-indigo-600 dark:text-indigo-400 font-mono mb-1">
+                      <Building2 className="w-3.5 h-3.5" />
+                      <span>{study.client}</span>
                     </div>
-                  ))}
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors leading-snug">
+                      {study.title}
+                    </h3>
+                  </div>
+
+                  <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-3 leading-relaxed">
+                    {study.summary}
+                  </p>
+
+                  {/* Quantitative Impact Highlights */}
+                  <div className="grid grid-cols-2 gap-2 pt-2 pb-1 border-y border-slate-100 dark:border-slate-800/80">
+                    {study.results.slice(0, 2).map((res, idx) => (
+                      <div key={idx} className="bg-slate-50 dark:bg-slate-900/70 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800/60">
+                        <div className="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400">
+                          {res.metric}
+                        </div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">{res.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-1">
+                    {study.technologies.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {study.technologies.length > 4 && (
+                      <span className="px-1.5 py-0.5 rounded text-[10px] font-mono text-slate-400">
+                        +{study.technologies.length - 4}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-1">
-                  {study.technologies.slice(0, 4).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {study.technologies.length > 4 && (
-                    <span className="px-1.5 py-0.5 rounded text-[10px] font-mono text-slate-400">
-                      +{study.technologies.length - 4}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="pt-5 mt-5 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-2">
-                <Button
-                  onClick={() => setActivePreview(study)}
-                  variant="outline"
-                  size="sm"
-                  className="text-xs gap-1.5"
-                >
-                  <Eye className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                  <span>Preview</span>
-                </Button>
-
-                <Link href={`/case-studies/${study.slug}`}>
-                  <Button variant="ghost" size="sm" className="text-xs gap-1 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white">
-                    <span>Full Case Study</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                {/* Action Buttons */}
+                <div className="pt-5 mt-5 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-2">
+                  <Button
+                    onClick={() => setActivePreview(study)}
+                    variant="outline"
+                    size="sm"
+                    className="text-xs gap-1.5"
+                  >
+                    <Eye className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                    <span>Preview</span>
                   </Button>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+
+                  <Link href={`/case-studies/${study.slug}`}>
+                    <Button variant="ghost" size="sm" className="text-xs gap-1 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white">
+                      <span>Full Case Study</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
       {/* Quick Preview Modal */}

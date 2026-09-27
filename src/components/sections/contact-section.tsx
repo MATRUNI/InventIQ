@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -103,7 +104,13 @@ export function ContactSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Direct Architecture Contact Info */}
-          <div className="lg:col-span-5 space-y-8">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 space-y-8"
+          >
             <div className="space-y-4">
               <Badge variant="indigo" dot>
                 Direct Access to Principal Architects
@@ -163,38 +170,49 @@ export function ContactSection() {
               <div>Direct Enterprise Email: <span className="text-slate-900 dark:text-white font-medium">architects@inventiq.tech</span></div>
               <div>Global Response Center: <span className="text-slate-900 dark:text-white font-medium">San Francisco • London • Singapore</span></div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Interactive Lead Gen Form */}
-          <div className="lg:col-span-7">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7"
+          >
             <div className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0A0E18] border border-slate-200 dark:border-slate-800 p-8 sm:p-10 shadow-lg dark:shadow-2xl relative">
               {/* Submission status feedback toast */}
-              {submissionResult && (
-                <div
-                  className={`mb-6 p-4 rounded-xl border flex items-start gap-3 ${
-                    submissionResult.success
-                      ? "bg-emerald-50 dark:bg-emerald-950/60 border-emerald-300 dark:border-emerald-500/40 text-emerald-800 dark:text-emerald-200"
-                      : "bg-rose-50 dark:bg-rose-950/60 border-rose-300 dark:border-rose-500/40 text-rose-800 dark:text-rose-200"
-                  }`}
-                >
-                  {submissionResult.success ? (
-                    <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                  ) : (
-                    <ShieldAlert className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
-                  )}
-                  <div>
-                    <div className="font-semibold text-sm">
-                      {submissionResult.success ? "Request Dispatched Successfully" : "Submission Notice"}
-                    </div>
-                    <div className="text-xs mt-0.5">{submissionResult.message}</div>
-                    {submissionResult.leadId && (
-                      <div className="text-[11px] font-mono mt-1 opacity-80">
-                        Tracking ID: {submissionResult.leadId}
-                      </div>
+              <AnimatePresence>
+                {submissionResult && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className={`mb-6 p-4 rounded-xl border flex items-start gap-3 ${
+                      submissionResult.success
+                        ? "bg-emerald-50 dark:bg-emerald-950/60 border-emerald-300 dark:border-emerald-500/40 text-emerald-800 dark:text-emerald-200"
+                        : "bg-rose-50 dark:bg-rose-950/60 border-rose-300 dark:border-rose-500/40 text-rose-800 dark:text-rose-200"
+                    }`}
+                  >
+                    {submissionResult.success ? (
+                      <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                    ) : (
+                      <ShieldAlert className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
                     )}
-                  </div>
-                </div>
-              )}
+                    <div>
+                      <div className="font-semibold text-sm">
+                        {submissionResult.success ? "Request Dispatched Successfully" : "Submission Notice"}
+                      </div>
+                      <div className="text-xs mt-0.5">{submissionResult.message}</div>
+                      {submissionResult.leadId && (
+                        <div className="text-[11px] font-mono mt-1 opacity-80">
+                          Tracking ID: {submissionResult.leadId}
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 {/* Honeypot field (hidden from humans, catches bots) */}
@@ -379,7 +397,7 @@ export function ContactSection() {
                 </p>
               </form>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

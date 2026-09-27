@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calculator, Zap, Clock, ArrowRight } from "lucide-react";
@@ -18,7 +19,13 @@ export function RoiCalculator() {
   return (
     <section id="roi-calculator" className="py-24 bg-slate-50 dark:bg-[#080C17] relative border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto space-y-4 mb-14"
+        >
           <Badge variant="cyan" dot>
             Enterprise Value Quantification
           </Badge>
@@ -31,11 +38,17 @@ export function RoiCalculator() {
           <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg">
             Estimate your annual cloud cost savings, engineering velocity uplift, and latency reductions based on benchmark data from 180+ enterprise deployments.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-6xl mx-auto">
           {/* Controls column */}
-          <div className="lg:col-span-6 rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0D131F] border border-slate-200 dark:border-slate-800 p-8 space-y-6 shadow-md dark:shadow-xl">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-6 rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0D131F] border border-slate-200 dark:border-slate-800 p-8 space-y-6 shadow-md dark:shadow-xl"
+          >
             <div className="flex items-center gap-2 pb-3 border-b border-slate-100 dark:border-slate-800">
               <Calculator className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
               <h3 className="text-base font-bold text-slate-900 dark:text-white">Your Current Infrastructure Parameters</h3>
@@ -112,20 +125,34 @@ export function RoiCalculator() {
                 <span>200+ devs</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Results column */}
-          <div className="lg:col-span-6 rounded-2xl bg-gradient-to-br from-[#0E1524] via-[#111A2E] to-[#0A0F1D] border border-cyan-500/40 p-8 space-y-6 shadow-2xl relative overflow-hidden text-white">
+          {/* Results column with Framer Motion counter pulse */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-6 rounded-2xl bg-gradient-to-br from-[#0E1524] via-[#111A2E] to-[#0A0F1D] border border-cyan-500/40 p-8 space-y-6 shadow-2xl relative overflow-hidden text-white"
+          >
             <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-[90px] rounded-full pointer-events-none" />
 
             <div className="space-y-1">
               <span className="text-xs uppercase font-mono text-cyan-400 font-bold tracking-wider">
                 Projected Annual Impact
               </span>
-              <div className="text-4xl sm:text-5xl font-mono font-black text-white tracking-tight">
-                ${annualSavings.toLocaleString()}
-                <span className="text-base text-cyan-400 font-sans font-normal ml-2">/ year saved</span>
-              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={annualSavings}
+                  initial={{ opacity: 0.7, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.15 }}
+                  className="text-4xl sm:text-5xl font-mono font-black text-white tracking-tight"
+                >
+                  ${annualSavings.toLocaleString()}
+                  <span className="text-base text-cyan-400 font-sans font-normal ml-2">/ year saved</span>
+                </motion.div>
+              </AnimatePresence>
               <p className="text-xs text-slate-400">
                 Direct infrastructure cost elimination through FinOps, spot arbitrage, and eBPF kernel routing.
               </p>
@@ -164,7 +191,7 @@ export function RoiCalculator() {
                 </Button>
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

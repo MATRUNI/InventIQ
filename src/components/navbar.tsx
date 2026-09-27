@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./ui/theme-toggle";
 import { Cpu, Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
@@ -71,7 +72,7 @@ export function Navbar() {
           <div className="hidden sm:flex items-center gap-3">
             {/* Live Status indicator */}
             <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping" />
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>SLA 99.999% Operational</span>
             </div>
@@ -99,35 +100,43 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Dropdown */}
-        {mobileMenuOpen && (
-          <div className="sm:hidden mt-3 pt-4 pb-6 px-4 bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 rounded-2xl space-y-3 shadow-2xl">
-            <div className="flex flex-col space-y-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-
-            <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-3">
-              <div className="flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                <span>Enterprise SLA: 99.999% Active</span>
+        {/* Mobile Dropdown with Framer Motion */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, y: -10 }}
+              animate={{ opacity: 1, height: "auto", y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -10 }}
+              transition={{ duration: 0.25 }}
+              className="sm:hidden mt-3 pt-4 pb-6 px-4 bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 rounded-2xl space-y-3 shadow-2xl overflow-hidden"
+            >
+              <div className="flex flex-col space-y-2">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
               </div>
-              <a href="/#contact" onClick={() => setMobileMenuOpen(false)} className="w-full">
-                <Button size="md" variant="primary" className="w-full justify-center">
-                  Talk to Architects
-                </Button>
-              </a>
-            </div>
-          </div>
-        )}
+
+              <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-3">
+                <div className="flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                  <span>Enterprise SLA: 99.999% Active</span>
+                </div>
+                <a href="/#contact" onClick={() => setMobileMenuOpen(false)} className="w-full">
+                  <Button size="md" variant="primary" className="w-full justify-center">
+                    Talk to Architects
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

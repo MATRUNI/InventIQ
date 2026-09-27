@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -75,40 +76,73 @@ HAVING total_events > 1000000;`,
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden cyber-grid">
-      {/* Background Animated Neon Glow Mesh */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-gradient-to-tr from-indigo-600/20 via-blue-500/20 to-emerald-500/15 blur-[120px] rounded-full pointer-events-none -z-10 animate-aurora" />
+      {/* Background Animated Neon Glow Mesh with Framer Motion */}
+      <motion.div
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.35, 0.5, 0.35],
+          rotate: [0, 45, 0],
+        }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-gradient-to-tr from-indigo-600/25 via-blue-500/20 to-emerald-500/15 blur-[120px] rounded-full pointer-events-none -z-10"
+      />
       <div className="absolute top-10 right-10 w-72 h-72 bg-violet-600/10 blur-[90px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Headlines & Call to Actions */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 space-y-6 text-center lg:text-left"
+          >
             {/* Top Pill */}
-            <div className="inline-flex items-center gap-2">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="inline-flex items-center gap-2"
+            >
               <Badge variant="indigo" dot>
                 Enterprise Tech Platform
               </Badge>
               <span className="text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:inline-block">
                 Sub-Second Core Web Vitals • SOC2 Type II
               </span>
-            </div>
+            </motion.div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] text-slate-950 dark:text-white">
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] text-slate-950 dark:text-white"
+            >
               Engineering Next-Gen{" "}
               <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-emerald-600 dark:from-indigo-400 dark:via-blue-400 dark:to-emerald-300 bg-clip-text text-transparent">
                 Autonomous AI
               </span>{" "}
               & Cloud Architectures
-            </h1>
+            </motion.h1>
 
             {/* Subheading */}
-            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+              className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal"
+            >
               We design and scale sovereign generative AI pipelines, ultra-low latency microservice meshes, and real-time streaming lakehouses handling millions of requests per second.
-            </p>
+            </motion.p>
 
             {/* CTA Group */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.7 }}
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
+            >
               <a href="#contact" className="w-full sm:w-auto">
                 <Button size="lg" variant="primary" className="w-full sm:w-auto group">
                   <span>Schedule Architecture Review</span>
@@ -121,10 +155,15 @@ HAVING total_events > 1000000;`,
                   <span>Explore Solutions</span>
                 </Button>
               </a>
-            </div>
+            </motion.div>
 
             {/* Trust Metrics Row */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800/80 max-w-xl mx-auto lg:mx-0">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800/80 max-w-xl mx-auto lg:mx-0"
+            >
               <div className="flex flex-col">
                 <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
                   2.4M<span className="text-indigo-600 dark:text-indigo-400 text-lg">+</span>
@@ -143,11 +182,16 @@ HAVING total_events > 1000000;`,
                 </span>
                 <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">SLA Availability</span>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Column: Interactive Code & Architecture Telemetry Card */}
-          <div className="lg:col-span-5">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5"
+          >
             <div className="relative group">
               {/* Neon border blur halo */}
               <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-blue-500 to-emerald-500 rounded-2xl blur-lg opacity-25 dark:opacity-30 group-hover:opacity-50 transition duration-500" />
@@ -213,11 +257,20 @@ HAVING total_events > 1000000;`,
                   </button>
                 </div>
 
-                {/* Code Body */}
+                {/* Code Body with Framer Motion tab transition */}
                 <div className="p-4 font-mono text-xs text-slate-200 bg-[#070A10] overflow-x-auto min-h-[220px]">
-                  <pre className="leading-relaxed">
-                    <code>{codeSnippets[activeTab].code}</code>
-                  </pre>
+                  <AnimatePresence mode="wait">
+                    <motion.pre
+                      key={activeTab}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.2 }}
+                      className="leading-relaxed"
+                    >
+                      <code>{codeSnippets[activeTab].code}</code>
+                    </motion.pre>
+                  </AnimatePresence>
                 </div>
 
                 {/* Live Telemetry Bar */}
@@ -237,7 +290,7 @@ HAVING total_events > 1000000;`,
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
