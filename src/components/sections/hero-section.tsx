@@ -244,7 +244,7 @@ HAVING total_events > 1000000;`,
                 </div>
 
                 {/* Code Body with Framer Motion tab transition & Syntax Highlights */}
-                <div className="p-4 font-mono text-xs bg-slate-950 dark:bg-[#070A10] text-slate-200 overflow-x-auto min-h-[220px]">
+                <div className="p-4 font-mono text-xs bg-slate-50 dark:bg-[#070A10] text-slate-800 dark:text-slate-200 overflow-x-auto min-h-[220px] transition-colors duration-200 border-y border-slate-200/80 dark:border-slate-800/80">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeTab}
@@ -258,25 +258,25 @@ HAVING total_events > 1000000;`,
                         <div className="space-y-1">
                           <div className="text-slate-500 dark:text-slate-400 italic">// Sovereign Enterprise RAG with Sub-10ms Vector Search</div>
                           <div>
-                            <span className="text-purple-400 dark:text-purple-300 font-semibold">import</span> &#123; <span className="text-cyan-400 dark:text-cyan-300">SovereignAI</span>, <span className="text-cyan-400 dark:text-cyan-300">VectorPipeline</span> &#125; <span className="text-purple-400 dark:text-purple-300 font-semibold">from</span> <span className="text-emerald-400 dark:text-emerald-300">&apos;@inventiq/ai-core&apos;</span>;
+                            <span className="text-purple-700 dark:text-purple-300 font-semibold">import</span> &#123; <span className="text-indigo-700 dark:text-cyan-300 font-medium">SovereignAI</span>, <span className="text-indigo-700 dark:text-cyan-300 font-medium">VectorPipeline</span> &#125; <span className="text-purple-700 dark:text-purple-300 font-semibold">from</span> <span className="text-emerald-700 dark:text-emerald-300 font-medium">&apos;@inventiq/ai-core&apos;</span>;
                           </div>
                           <div className="pt-1.5">
-                            <span className="text-purple-400 dark:text-purple-300 font-semibold">export const</span> <span className="text-indigo-400 dark:text-indigo-300">agent</span> = <span className="text-purple-400 dark:text-purple-300 font-semibold">new</span> <span className="text-cyan-400 dark:text-cyan-300">SovereignAI.Agent</span>(&#123;
+                            <span className="text-purple-700 dark:text-purple-300 font-semibold">export const</span> <span className="text-blue-700 dark:text-indigo-300 font-medium">agent</span> = <span className="text-purple-700 dark:text-purple-300 font-semibold">new</span> <span className="text-indigo-700 dark:text-cyan-300 font-medium">SovereignAI.Agent</span>(&#123;
                           </div>
-                          <div className="pl-4 text-slate-300 dark:text-slate-200">
-                            <div>knowledgeBase: <span className="text-emerald-400 dark:text-emerald-300">&apos;enterprise-vault-v4&apos;</span>,</div>
-                            <div>vectorBackend: <span className="text-emerald-400 dark:text-emerald-300">&apos;qdrant-dense-sparse&apos;</span>,</div>
-                            <div>latencyThresholdMs: <span className="text-amber-400 dark:text-amber-300">12</span>,</div>
-                            <div>securityEnclave: <span className="text-emerald-400 dark:text-emerald-300">&apos;CONFIDENTIAL_COMPUTE&apos;</span>,</div>
-                            <div>auditLogging: <span className="text-amber-400 dark:text-amber-300">true</span></div>
+                          <div className="pl-4 text-slate-700 dark:text-slate-300">
+                            <div>knowledgeBase: <span className="text-emerald-700 dark:text-emerald-300 font-medium">&apos;enterprise-vault-v4&apos;</span>,</div>
+                            <div>vectorBackend: <span className="text-emerald-700 dark:text-emerald-300 font-medium">&apos;qdrant-dense-sparse&apos;</span>,</div>
+                            <div>latencyThresholdMs: <span className="text-amber-700 dark:text-amber-300 font-bold">12</span>,</div>
+                            <div>securityEnclave: <span className="text-emerald-700 dark:text-emerald-300 font-medium">&apos;CONFIDENTIAL_COMPUTE&apos;</span>,</div>
+                            <div>auditLogging: <span className="text-amber-700 dark:text-amber-300 font-bold">true</span></div>
                           </div>
                           <div>&#125;);</div>
                           <div className="pt-1.5">
-                            <span className="text-purple-400 dark:text-purple-300 font-semibold">const</span> <span className="text-indigo-400 dark:text-indigo-300">response</span> = <span className="text-purple-400 dark:text-purple-300 font-semibold">await</span> agent.<span className="text-blue-400 dark:text-blue-300">query</span>(&#123;
+                            <span className="text-purple-700 dark:text-purple-300 font-semibold">const</span> <span className="text-blue-700 dark:text-indigo-300 font-medium">response</span> = <span className="text-purple-700 dark:text-purple-300 font-semibold">await</span> agent.<span className="text-cyan-700 dark:text-blue-300 font-medium">query</span>(&#123;
                           </div>
-                          <div className="pl-4 text-slate-300 dark:text-slate-200">
-                            <div>input: <span className="text-emerald-400 dark:text-emerald-300">&quot;Generate real-time settlement risk analysis&quot;</span>,</div>
-                            <div>guardrails: [<span className="text-emerald-400 dark:text-emerald-300">&quot;PII_REDACTION&quot;</span>, <span className="text-emerald-400 dark:text-emerald-300">&quot;ANTI_HALLUCINATION&quot;</span>]</div>
+                          <div className="pl-4 text-slate-700 dark:text-slate-300">
+                            <div>input: <span className="text-emerald-700 dark:text-emerald-300 font-medium">&quot;Generate real-time settlement risk analysis&quot;</span>,</div>
+                            <div>guardrails: [<span className="text-emerald-700 dark:text-emerald-300 font-medium">&quot;PII_REDACTION&quot;</span>, <span className="text-emerald-700 dark:text-emerald-300 font-medium">&quot;ANTI_HALLUCINATION&quot;</span>]</div>
                           </div>
                           <div>&#125;);</div>
                         </div>
@@ -285,15 +285,15 @@ HAVING total_events > 1000000;`,
                       {activeTab === "cloud" && (
                         <div className="space-y-1">
                           <div className="text-slate-500 dark:text-slate-400 italic">// Multi-Region eBPF Traffic Mesh with Active-Active Failover</div>
-                          <div><span className="text-purple-400 dark:text-purple-300 font-semibold">package</span> <span className="text-indigo-400 dark:text-indigo-300">main</span></div>
-                          <div className="pt-1"><span className="text-purple-400 dark:text-purple-300 font-semibold">import</span> <span className="text-emerald-400 dark:text-emerald-300">&quot;github.com/inventiq/mesh/ebpf&quot;</span></div>
-                          <div className="pt-1.5"><span className="text-purple-400 dark:text-purple-300 font-semibold">func</span> <span className="text-blue-400 dark:text-blue-300">RouteHighThroughputTraffic</span>(packet *<span className="text-cyan-400 dark:text-cyan-300">ebpf.Packet</span>) <span className="text-cyan-400 dark:text-cyan-300">error</span> &#123;</div>
-                          <div className="pl-4 text-slate-300 dark:text-slate-200">
-                            <div>optimalPod := ebpf.<span className="text-blue-400 dark:text-blue-300">SelectTargetPod</span>(packet.TenantId, ebpf.MetricP99Latency)</div>
-                            <div className="pt-1"><span className="text-purple-400 dark:text-purple-300 font-semibold">if</span> optimalPod.P99Latency &gt; <span className="text-amber-400 dark:text-amber-300">15</span> &#123;</div>
-                            <div className="pl-4"><span className="text-purple-400 dark:text-purple-300 font-semibold">return</span> ebpf.<span className="text-blue-400 dark:text-blue-300">TriggerFastReroute</span>(packet, <span className="text-emerald-400 dark:text-emerald-300">&quot;canary-cluster&quot;</span>)</div>
+                          <div><span className="text-purple-700 dark:text-purple-300 font-semibold">package</span> <span className="text-blue-700 dark:text-indigo-300 font-medium">main</span></div>
+                          <div className="pt-1"><span className="text-purple-700 dark:text-purple-300 font-semibold">import</span> <span className="text-emerald-700 dark:text-emerald-300 font-medium">&quot;github.com/inventiq/mesh/ebpf&quot;</span></div>
+                          <div className="pt-1.5"><span className="text-purple-700 dark:text-purple-300 font-semibold">func</span> <span className="text-cyan-700 dark:text-blue-300 font-medium">RouteHighThroughputTraffic</span>(packet *<span className="text-indigo-700 dark:text-cyan-300 font-medium">ebpf.Packet</span>) <span className="text-indigo-700 dark:text-cyan-300 font-medium">error</span> &#123;</div>
+                          <div className="pl-4 text-slate-700 dark:text-slate-300">
+                            <div>optimalPod := ebpf.<span className="text-cyan-700 dark:text-blue-300 font-medium">SelectTargetPod</span>(packet.TenantId, ebpf.MetricP99Latency)</div>
+                            <div className="pt-1"><span className="text-purple-700 dark:text-purple-300 font-semibold">if</span> optimalPod.P99Latency &gt; <span className="text-amber-700 dark:text-amber-300 font-bold">15</span> &#123;</div>
+                            <div className="pl-4"><span className="text-purple-700 dark:text-purple-300 font-semibold">return</span> ebpf.<span className="text-cyan-700 dark:text-blue-300 font-medium">TriggerFastReroute</span>(packet, <span className="text-emerald-700 dark:text-emerald-300 font-medium">&quot;canary-cluster&quot;</span>)</div>
                             <div>&#125;</div>
-                            <div><span className="text-purple-400 dark:text-purple-300 font-semibold">return</span> ebpf.<span className="text-blue-400 dark:text-blue-300">ZeroCopyDispatch</span>(packet, optimalPod.Socket)</div>
+                            <div><span className="text-purple-700 dark:text-purple-300 font-semibold">return</span> ebpf.<span className="text-cyan-700 dark:text-blue-300 font-medium">ZeroCopyDispatch</span>(packet, optimalPod.Socket)</div>
                           </div>
                           <div>&#125;</div>
                         </div>
@@ -302,16 +302,16 @@ HAVING total_events > 1000000;`,
                       {activeTab === "data" && (
                         <div className="space-y-1">
                           <div className="text-slate-500 dark:text-slate-400 italic">-- Sub-Second Event Processing Lakehouse</div>
-                          <div><span className="text-purple-400 dark:text-purple-300 font-semibold">SELECT</span></div>
-                          <div className="pl-4 text-slate-300 dark:text-slate-200">
+                          <div><span className="text-purple-700 dark:text-purple-300 font-semibold">SELECT</span></div>
+                          <div className="pl-4 text-slate-700 dark:text-slate-300">
                             <div>tenant_id, geo_cluster,</div>
-                            <div><span className="text-blue-400 dark:text-blue-300">quantile</span>(<span className="text-amber-400 dark:text-amber-300">0.99</span>)(request_latency_ms) <span className="text-purple-400 dark:text-purple-300 font-semibold">AS</span> p99_latency,</div>
-                            <div><span className="text-blue-400 dark:text-blue-300">sum</span>(events_processed) <span className="text-purple-400 dark:text-purple-300 font-semibold">AS</span> total_events,</div>
-                            <div><span className="text-blue-400 dark:text-blue-300">countIf</span>(anomaly_score &gt; <span className="text-amber-400 dark:text-amber-300">0.92</span>) <span className="text-purple-400 dark:text-purple-300 font-semibold">AS</span> fraud_events_blocked</div>
+                            <div><span className="text-cyan-700 dark:text-blue-300 font-medium">quantile</span>(<span className="text-amber-700 dark:text-amber-300 font-bold">0.99</span>)(request_latency_ms) <span className="text-purple-700 dark:text-purple-300 font-semibold">AS</span> p99_latency,</div>
+                            <div><span className="text-cyan-700 dark:text-blue-300 font-medium">sum</span>(events_processed) <span className="text-purple-700 dark:text-purple-300 font-semibold">AS</span> total_events,</div>
+                            <div><span className="text-cyan-700 dark:text-blue-300 font-medium">countIf</span>(anomaly_score &gt; <span className="text-amber-700 dark:text-amber-300 font-bold">0.92</span>) <span className="text-purple-700 dark:text-purple-300 font-semibold">AS</span> fraud_events_blocked</div>
                           </div>
-                          <div><span className="text-purple-400 dark:text-purple-300 font-semibold">FROM</span> stream_telemetry_5min</div>
-                          <div><span className="text-purple-400 dark:text-purple-300 font-semibold">GROUP BY</span> tenant_id, geo_cluster</div>
-                          <div><span className="text-purple-400 dark:text-purple-300 font-semibold">HAVING</span> total_events &gt; <span className="text-amber-400 dark:text-amber-300">1000000</span>;</div>
+                          <div><span className="text-purple-700 dark:text-purple-300 font-semibold">FROM</span> stream_telemetry_5min</div>
+                          <div><span className="text-purple-700 dark:text-purple-300 font-semibold">GROUP BY</span> tenant_id, geo_cluster</div>
+                          <div><span className="text-purple-700 dark:text-purple-300 font-semibold">HAVING</span> total_events &gt; <span className="text-amber-700 dark:text-amber-300 font-bold">1000000</span>;</div>
                         </div>
                       )}
                     </motion.div>

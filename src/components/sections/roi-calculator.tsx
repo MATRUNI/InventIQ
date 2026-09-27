@@ -139,12 +139,12 @@ export function RoiCalculator() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-6 rounded-2xl bg-gradient-to-br from-[#0E1524] via-[#111A2E] to-[#0A0F1D] border border-cyan-500/40 p-8 space-y-6 shadow-2xl relative overflow-hidden text-white"
+            className="lg:col-span-6 rounded-2xl bg-gradient-to-br from-cyan-50/80 via-indigo-50/40 to-white dark:from-[#0E1524] dark:via-[#111A2E] dark:to-[#0A0F1D] border border-cyan-300/80 dark:border-cyan-500/40 p-8 space-y-6 shadow-xl dark:shadow-2xl relative overflow-hidden text-slate-900 dark:text-white transition-colors duration-200"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-[90px] rounded-full pointer-events-none" />
 
             <div className="space-y-1">
-              <span className="text-xs uppercase font-mono text-cyan-400 font-bold tracking-wider">
+              <span className="text-xs uppercase font-mono text-cyan-700 dark:text-cyan-400 font-bold tracking-wider">
                 Projected Annual Impact
               </span>
               <AnimatePresence mode="wait">
@@ -153,40 +153,40 @@ export function RoiCalculator() {
                   initial={{ opacity: 0.7, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.15 }}
-                  className="text-4xl sm:text-5xl font-mono font-black text-white tracking-tight"
+                  className="text-4xl sm:text-5xl font-mono font-black text-slate-950 dark:text-white tracking-tight"
                 >
                   ${annualSavings.toLocaleString()}
-                  <span className="text-base text-cyan-400 font-sans font-normal ml-2">/ year saved</span>
+                  <span className="text-base text-cyan-700 dark:text-cyan-400 font-sans font-normal ml-2">/ year saved</span>
                 </motion.div>
               </AnimatePresence>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Direct infrastructure cost elimination through FinOps, spot arbitrage, and eBPF kernel routing.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800">
-              <div className="bg-[#090D16]/90 p-4 rounded-xl border border-slate-800/80">
-                <div className="flex items-center gap-2 text-indigo-400 mb-1">
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+              <div className="bg-white/90 dark:bg-[#090D16]/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm transition-colors">
+                <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 mb-1">
                   <Zap className="w-4 h-4" />
                   <span className="text-xs font-semibold">Latency Reduction</span>
                 </div>
-                <div className="text-2xl font-mono font-bold text-white">-{latencyImprovement}%</div>
-                <div className="text-[10px] text-slate-400">Average p99 speedup</div>
+                <div className="text-2xl font-mono font-bold text-slate-950 dark:text-white">-{latencyImprovement}%</div>
+                <div className="text-[10px] text-slate-500 dark:text-slate-400">Average p99 speedup</div>
               </div>
 
-              <div className="bg-[#090D16]/90 p-4 rounded-xl border border-slate-800/80">
-                <div className="flex items-center gap-2 text-emerald-400 mb-1">
+              <div className="bg-white/90 dark:bg-[#090D16]/90 p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm transition-colors">
+                <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-1">
                   <Clock className="w-4 h-4" />
                   <span className="text-xs font-semibold">Dev Hours Saved</span>
                 </div>
-                <div className="text-2xl font-mono font-bold text-white">+{devHoursSaved} hrs</div>
-                <div className="text-[10px] text-slate-400">Per week in maintenance</div>
+                <div className="text-2xl font-mono font-bold text-slate-950 dark:text-white">+{devHoursSaved} hrs</div>
+                <div className="text-[10px] text-slate-500 dark:text-slate-400">Per week in maintenance</div>
               </div>
             </div>
 
-            <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800 flex items-center justify-between text-xs">
-              <span className="text-slate-300">Projected 3-Year Value ROI:</span>
-              <span className="text-lg font-mono font-bold text-cyan-400">{projectedRoiMultiplier}x Return</span>
+            <div className="bg-white/90 dark:bg-slate-900/80 p-4 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs shadow-sm transition-colors">
+              <span className="text-slate-700 dark:text-slate-300 font-medium">Projected 3-Year Value ROI:</span>
+              <span className="text-lg font-mono font-bold text-cyan-700 dark:text-cyan-400">{projectedRoiMultiplier}x Return</span>
             </div>
 
             <div className="pt-2">
