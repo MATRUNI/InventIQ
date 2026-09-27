@@ -1,13 +1,45 @@
+"use client";
+
 import React from "react";
+import { motion, type Variants } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Star, Quote, CheckCircle } from "lucide-react";
 
 export function TestimonialsSection() {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 24, scale: 0.98 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
     <section id="testimonials" className="py-24 bg-slate-50/70 dark:bg-[#070B14] relative border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto space-y-4 mb-16"
+        >
           <Badge variant="emerald" dot>
             Verified Client Endorsements
           </Badge>
@@ -20,13 +52,22 @@ export function TestimonialsSection() {
           <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg">
             Hear directly from the engineering executives whose mission-critical infrastructures run on InventIQ architecture.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
           {TESTIMONIALS.map((t) => (
-            <div
+            <motion.div
               key={t.id}
-              className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0D131F] border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-indigo-400 dark:hover:border-indigo-500/40 transition-all duration-300 shadow-md dark:shadow-xl group relative overflow-hidden"
+              variants={cardVariants}
+              whileHover={{ y: -6, scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 350, damping: 25 }}
+              className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0D131F] border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-emerald-400 dark:hover:border-emerald-500/40 hover:shadow-xl dark:hover:shadow-emerald-500/5 transition-all duration-300 shadow-md dark:shadow-xl group relative overflow-hidden cursor-default"
             >
               <div className="space-y-4">
                 {/* Top row: Star rating + Highlight pill */}
@@ -59,9 +100,9 @@ export function TestimonialsSection() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

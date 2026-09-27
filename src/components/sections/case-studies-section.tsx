@@ -80,8 +80,8 @@ export function CaseStudiesSection() {
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.4 }}
-                whileHover={{ y: -4 }}
+                transition={{ duration: 0.35 }}
+                whileHover={{ y: -6, scale: 1.015 }}
                 className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0A0E18] border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:border-emerald-400 dark:hover:border-emerald-500/40 transition-colors shadow-md dark:shadow-xl group"
               >
                 <div className="space-y-4">

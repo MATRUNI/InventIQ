@@ -75,7 +75,8 @@ export function BentoGrid() {
           {/* Card 1: Autonomous AI Intelligence (2 cols) */}
           <motion.div
             variants={cardVariants}
-            whileHover={{ y: -4 }}
+            whileHover={{ y: -6, scale: 1.012 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
             className="md:col-span-2 rounded-2xl bg-white dark:bg-gradient-to-br dark:from-[#111827] dark:via-[#0F172A] dark:to-[#0B0F19] border border-slate-200 dark:border-slate-800 p-8 relative overflow-hidden group hover:border-indigo-400 dark:hover:border-indigo-500/50 transition-colors shadow-md dark:shadow-xl"
           >
             <div className="absolute top-0 right-0 p-8 opacity-5 dark:opacity-10 group-hover:opacity-15 transition-opacity">
@@ -120,7 +121,8 @@ export function BentoGrid() {
           {/* Card 2: Sub-50ms Global Edge (1 col) */}
           <motion.div
             variants={cardVariants}
-            whileHover={{ y: -4 }}
+            whileHover={{ y: -6, scale: 1.012 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
             className="rounded-2xl bg-white dark:bg-gradient-to-br dark:from-[#111827] dark:via-[#0F172A] dark:to-[#0B0F19] border border-slate-200 dark:border-slate-800 p-8 relative overflow-hidden group hover:border-blue-400 dark:hover:border-blue-500/50 transition-colors shadow-md dark:shadow-xl flex flex-col justify-between"
           >
             <div className="space-y-4">
@@ -148,7 +150,8 @@ export function BentoGrid() {
           {/* Card 3: Zero-Trust Security Mesh (1 col) */}
           <motion.div
             variants={cardVariants}
-            whileHover={{ y: -4 }}
+            whileHover={{ y: -6, scale: 1.012 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
             className="rounded-2xl bg-white dark:bg-gradient-to-br dark:from-[#111827] dark:via-[#0F172A] dark:to-[#0B0F19] border border-slate-200 dark:border-slate-800 p-8 relative overflow-hidden group hover:border-emerald-400 dark:hover:border-emerald-500/50 transition-colors shadow-md dark:shadow-xl flex flex-col justify-between"
           >
             <div className="space-y-4">
@@ -178,7 +181,8 @@ export function BentoGrid() {
           {/* Card 4: 3M+ Msg/Sec Streaming Lakehouse (2 cols) */}
           <motion.div
             variants={cardVariants}
-            whileHover={{ y: -4 }}
+            whileHover={{ y: -6, scale: 1.012 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
             className="md:col-span-2 rounded-2xl bg-white dark:bg-gradient-to-br dark:from-[#111827] dark:via-[#0F172A] dark:to-[#0B0F19] border border-slate-200 dark:border-slate-800 p-8 relative overflow-hidden group hover:border-violet-400 dark:hover:border-violet-500/50 transition-colors shadow-md dark:shadow-xl"
           >
             <div className="relative z-10 space-y-6">
@@ -215,7 +219,8 @@ export function BentoGrid() {
           {/* Card 5: FinOps Cloud Savings (2 cols) */}
           <motion.div
             variants={cardVariants}
-            whileHover={{ y: -4 }}
+            whileHover={{ y: -6, scale: 1.012 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
             className="md:col-span-2 rounded-2xl bg-white dark:bg-gradient-to-br dark:from-[#111827] dark:via-[#0F172A] dark:to-[#0B0F19] border border-slate-200 dark:border-slate-800 p-8 relative overflow-hidden group hover:border-cyan-400 dark:hover:border-cyan-500/50 transition-colors shadow-md dark:shadow-xl"
           >
             <div className="relative z-10 space-y-6">
@@ -265,7 +270,8 @@ export function BentoGrid() {
           {/* Card 6: Extreme Developer Velocity (1 col) */}
           <motion.div
             variants={cardVariants}
-            whileHover={{ y: -4 }}
+            whileHover={{ y: -6, scale: 1.012 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
             className="rounded-2xl bg-white dark:bg-gradient-to-br dark:from-[#111827] dark:via-[#0F172A] dark:to-[#0B0F19] border border-slate-200 dark:border-slate-800 p-8 relative overflow-hidden group hover:border-amber-400 dark:hover:border-amber-500/50 transition-colors shadow-md dark:shadow-xl flex flex-col justify-between"
           >
             <div className="space-y-4">
