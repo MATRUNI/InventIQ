@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Terminal, ShieldCheck } from "lucide-react";
 
@@ -6,22 +9,28 @@ export function CtaBanner() {
   return (
     <section className="py-20 relative overflow-hidden transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl bg-gradient-to-r from-indigo-950 via-[#111827] to-slate-900 border border-indigo-500/40 p-8 sm:p-14 overflow-hidden shadow-2xl text-white">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="relative rounded-3xl bg-gradient-to-r from-indigo-50 via-blue-50 to-slate-100 dark:from-indigo-950 dark:via-[#111827] dark:to-slate-900 border border-indigo-200 dark:border-indigo-500/40 p-8 sm:p-14 overflow-hidden shadow-xl dark:shadow-2xl text-slate-900 dark:text-white transition-colors duration-200"
+        >
           {/* Glowing backdrops */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/20 blur-[100px] rounded-full pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-500/15 blur-[100px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/20 blur-[100px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-500/10 dark:bg-emerald-500/15 blur-[100px] rounded-full pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-500/40 text-xs text-indigo-300 font-mono">
-              <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100/80 dark:bg-indigo-500/20 border border-indigo-300 dark:border-indigo-500/40 text-xs text-indigo-700 dark:text-indigo-300 font-mono">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
               <span>Next-Gen Enterprise Infrastructure Readiness</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-950 dark:text-white leading-tight">
               Ready to eliminate latency and scale to millions of requests?
             </h2>
 
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
               Join tier-1 banks, healthcare pioneers, and global retailers who replaced fragile legacy monoliths with InventIQ's sovereign cloud and AI meshes.
             </p>
 
@@ -34,25 +43,29 @@ export function CtaBanner() {
               </a>
 
               <a href="#case-studies" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-slate-900/60 border-slate-700 text-white hover:bg-slate-800">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto bg-white/90 dark:bg-slate-900/60 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 shadow-sm"
+                >
                   <span>Explore Case Studies</span>
                 </Button>
               </a>
             </div>
 
-            <div className="flex flex-wrap items-center gap-6 pt-4 text-xs font-mono text-slate-400">
-              <div className="flex items-center gap-1.5 text-emerald-400">
+            <div className="flex flex-wrap items-center gap-6 pt-4 text-xs font-mono text-slate-500 dark:text-slate-400">
+              <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Zero Lock-in Guarantee</span>
               </div>
-              <div className="flex items-center gap-1.5 text-indigo-400">
+              <div className="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400">
                 <Terminal className="w-4 h-4" />
                 <span>Kubernetes & GitOps Native</span>
               </div>
               <div>Sub-12ms p99 SLA</div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
