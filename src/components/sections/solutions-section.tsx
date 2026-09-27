@@ -34,6 +34,29 @@ export function SolutionsSection() {
       ? SOLUTIONS_DATA
       : SOLUTIONS_DATA.filter((s) => s.category === selectedCategory);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 24, scale: 0.97 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.45,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+
   return (
     <section id="solutions" className="py-24 bg-slate-50/70 dark:bg-[#070B14] relative transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -82,18 +105,23 @@ export function SolutionsSection() {
         </div>
 
         {/* Solutions Grid with Framer Motion AnimatePresence */}
-        <motion.div layout className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <motion.div
+          layout
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+        >
           <AnimatePresence mode="popLayout">
             {filteredSolutions.map((solution) => (
               <motion.div
                 layout
                 key={solution.id}
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.35 }}
-                whileHover={{ y: -6, scale: 1.01 }}
-                className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0D131F] border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-indigo-400 dark:hover:border-indigo-500/40 transition-colors shadow-md dark:shadow-xl group"
+                variants={cardVariants}
+                whileHover={{ y: -8, scale: 1.015 }}
+                transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0D131F] border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-2xl dark:hover:shadow-indigo-500/10 transition-colors shadow-md dark:shadow-xl group"
               >
                 <div className="space-y-6">
                   {/* Header row */}

@@ -28,6 +28,29 @@ export function CaseStudiesSection() {
       ? CASE_STUDIES_DATA
       : CASE_STUDIES_DATA.filter((c) => c.industry === selectedIndustry);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 24, scale: 0.97 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.45,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+
   return (
     <section id="case-studies" className="py-24 relative overflow-hidden transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,18 +94,23 @@ export function CaseStudiesSection() {
         </div>
 
         {/* Case Studies Grid with AnimatePresence */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          layout
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           <AnimatePresence mode="popLayout">
             {filteredStudies.map((study) => (
               <motion.div
                 layout
                 key={study.slug}
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.35 }}
-                whileHover={{ y: -6, scale: 1.015 }}
-                className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0A0E18] border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:border-emerald-400 dark:hover:border-emerald-500/40 transition-colors shadow-md dark:shadow-xl group"
+                variants={cardVariants}
+                whileHover={{ y: -8, scale: 1.015 }}
+                transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0A0E18] border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between hover:border-emerald-400 dark:hover:border-emerald-500/50 hover:shadow-2xl dark:hover:shadow-emerald-500/10 transition-colors shadow-md dark:shadow-xl group"
               >
                 <div className="space-y-4">
                   {/* Header */}
