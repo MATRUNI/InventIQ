@@ -22,6 +22,8 @@ interface CaseStudyPageProps {
   params: Promise<{ slug: string }>;
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return CASE_STUDIES_DATA.map((study) => ({
     slug: study.slug,
