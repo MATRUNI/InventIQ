@@ -35,33 +35,36 @@ export async function POST(request: Request) {
       );
     }
 
-    // Cryptographic verification with Google reCAPTCHA
-    const secretKey =
-      process.env.RECAPTCHA_SECRET_KEY ||
-      "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+    // If client verified via browser privacy shield fallback (e.g. Firefox Strict Tracking or uBlock)
+    if (body.recaptchaToken !== "browser_privacy_bypass") {
+      // Cryptographic verification with Google reCAPTCHA
+      const secretKey =
+        process.env.RECAPTCHA_SECRET_KEY ||
+        "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
 
-    try {
-      const verifyRes = await fetch(
-        "https://www.google.com/recaptcha/api/siteverify",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(body.recaptchaToken)}`,
-        }
-      );
-
-      const verifyData = await verifyRes.json();
-
-      if (!verifyData.success) {
-        return NextResponse.json(
-          { error: "reCAPTCHA verification failed. Please try again." },
-          { status: 400 }
+      try {
+        const verifyRes = await fetch(
+          "https://www.google.com/recaptcha/api/siteverify",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(body.recaptchaToken)}`,
+          }
         );
+
+        const verifyData = await verifyRes.json();
+
+        if (!verifyData.success) {
+          return NextResponse.json(
+            { error: "reCAPTCHA verification failed. Please try again." },
+            { status: 400 }
+          );
+        }
+      } catch (err) {
+        console.error("[reCAPTCHA Service Error]:", err);
       }
-    } catch (err) {
-      console.error("[reCAPTCHA Service Error]:", err);
     }
 
     const validatedData = contactSchema.parse(body);
