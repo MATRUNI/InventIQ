@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Recaptcha } from "@/components/ui/recaptcha";
 import {
   Send,
   CheckCircle,
@@ -34,6 +35,8 @@ type FormValues = z.infer<typeof formSchema>;
 
 export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const [recaptchaError, setRecaptchaError] = useState(false);
   const [submissionResult, setSubmissionResult] = useState<{
     success: boolean;
     message: string;
@@ -60,6 +63,11 @@ export function ContactSection() {
   });
 
   const onSubmit = async (data: FormValues) => {
+    if (!recaptchaToken) {
+      setRecaptchaError(true);
+      return;
+    }
+    setRecaptchaError(false);
     setIsSubmitting(true);
     setSubmissionResult(null);
 
@@ -67,7 +75,10 @@ export function ContactSection() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          recaptchaToken,
+        }),
       });
 
       const resData = await response.json();
@@ -79,6 +90,7 @@ export function ContactSection() {
           leadId: resData.leadId,
         });
         reset();
+        setRecaptchaToken(null);
       } else {
         setSubmissionResult({
           success: false,
@@ -388,6 +400,18 @@ export function ContactSection() {
                   {errors.message && (
                     <p className="text-[11px] text-rose-500 dark:text-rose-400 font-medium">{errors.message.message}</p>
                   )}
+                </div>
+
+                {/* reCAPTCHA Security Verification */}
+                <div className="pt-1">
+                  <Recaptcha
+                    onVerify={(token) => {
+                      setRecaptchaToken(token);
+                      setRecaptchaError(false);
+                    }}
+                    hasError={recaptchaError}
+                    errorMessage="Please verify that you are not a robot before submitting."
+                  />
                 </div>
 
                 {/* Submit Button */}

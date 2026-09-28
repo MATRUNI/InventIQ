@@ -12,6 +12,7 @@ const contactSchema = z.object({
   timeline: z.string().min(1, "Please select your target timeline"),
   message: z.string().min(10, "Message must be at least 10 characters"),
   honeypot: z.string().optional(),
+  recaptchaToken: z.string().min(1, "reCAPTCHA verification is required"),
 });
 
 export async function POST(request: Request) {
@@ -24,6 +25,43 @@ export async function POST(request: Request) {
         { error: "Spam bot submission blocked" },
         { status: 400 }
       );
+    }
+
+    // reCAPTCHA security verification
+    if (!body.recaptchaToken || typeof body.recaptchaToken !== "string") {
+      return NextResponse.json(
+        { error: "Security verification required. Please complete the reCAPTCHA." },
+        { status: 400 }
+      );
+    }
+
+    // Cryptographic verification with Google reCAPTCHA
+    const secretKey =
+      process.env.RECAPTCHA_SECRET_KEY ||
+      "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+
+    try {
+      const verifyRes = await fetch(
+        "https://www.google.com/recaptcha/api/siteverify",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(body.recaptchaToken)}`,
+        }
+      );
+
+      const verifyData = await verifyRes.json();
+
+      if (!verifyData.success) {
+        return NextResponse.json(
+          { error: "reCAPTCHA verification failed. Please try again." },
+          { status: 400 }
+        );
+      }
+    } catch (err) {
+      console.error("[reCAPTCHA Service Error]:", err);
     }
 
     const validatedData = contactSchema.parse(body);
