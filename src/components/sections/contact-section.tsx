@@ -112,24 +112,25 @@ export function ContactSection() {
             className="lg:col-span-5 space-y-8"
           >
             <div className="space-y-4">
-              <Badge variant="indigo" dot>
-                Direct Access to Principal Architects
-              </Badge>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-950 dark:text-white leading-tight">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                <span className="h-2 w-2 rounded-full bg-[#1163FB] animate-pulse" />
+                <span>Direct Access to Principal Architects</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.08] text-slate-950 dark:text-white">
                 Schedule Your{" "}
-                <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-emerald-600 dark:from-indigo-400 dark:via-blue-400 dark:to-emerald-400 bg-clip-text text-transparent">
-                  Architecture Review
+                <span className="text-[#1163FB] dark:text-[#3B82F6]">
+                  Architecture Review.
                 </span>
               </h2>
-              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
                 Connect directly with our Principal Solutions Architects. We do not do high-pressure sales pitches—we conduct concrete technical reviews of your bottlenecks, cost leaks, and scale requirements.
               </p>
             </div>
 
             {/* Value Guarantees */}
             <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 bg-white dark:bg-[#0E131E] border border-slate-200 dark:border-white/10 p-4 rounded-2xl">
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
                 <div>
                   <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                     Strict Non-Disclosure Guarantee
@@ -140,8 +141,8 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
-                <Clock className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-3 bg-white dark:bg-[#0E131E] border border-slate-200 dark:border-white/10 p-4 rounded-2xl">
+                <Clock className="w-5 h-5 text-[#1163FB] shrink-0 mt-0.5" />
                 <div>
                   <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                     4-Hour Business SLA Response
@@ -152,7 +153,7 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
+              <div className="flex items-start gap-3 bg-white dark:bg-[#0E131E] border border-slate-200 dark:border-white/10 p-4 rounded-2xl">
                 <ShieldAlert className="w-5 h-5 text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5" />
                 <div>
                   <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
@@ -180,7 +181,7 @@ export function ContactSection() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-7"
           >
-            <div className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0A0E18] border border-slate-200 dark:border-slate-800 p-8 sm:p-10 shadow-lg dark:shadow-2xl relative">
+            <div className="rounded-3xl bg-white dark:bg-[#0E131E] border border-slate-200 dark:border-white/10 p-8 sm:p-10 shadow-2xl relative">
               {/* Submission status feedback toast */}
               <AnimatePresence>
                 {submissionResult && (
@@ -392,13 +393,15 @@ export function ContactSection() {
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  size="lg"
-                  variant="primary"
+                  size="xl"
+                  variant="electric"
                   isLoading={isSubmitting}
-                  className="w-full justify-center group text-sm font-semibold"
+                  className="w-full justify-center group text-base font-bold rounded-full"
                 >
-                  <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
                   <span>Submit Architecture Inquiry</span>
+                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-1.5 transition-transform duration-300 ml-2">
+                    <Send className="w-3.5 h-3.5 text-white" />
+                  </div>
                 </Button>
 
                 <p className="text-[11px] text-center text-slate-500 dark:text-slate-400">

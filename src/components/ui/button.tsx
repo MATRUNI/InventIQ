@@ -2,35 +2,40 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "emerald" | "neon";
-  size?: "sm" | "md" | "lg" | "icon";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "emerald" | "neon" | "electric" | "cyber";
+  size?: "sm" | "md" | "lg" | "xl" | "icon";
   isLoading?: boolean;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", isLoading = false, children, disabled, ...props }, ref) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer active:scale-[0.98]";
+      "inline-flex items-center justify-center font-medium rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1163FB] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer active:scale-[0.98]";
 
     const variants = {
       primary:
-        "bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white shadow-lg shadow-indigo-500/20 border border-indigo-400/30 hover:shadow-indigo-500/35",
+        "bg-[#1163FB] hover:bg-[#0C4FCB] text-white shadow-lg shadow-[#1163FB]/25 border border-[#3B82F6]/40 hover:shadow-[#1163FB]/40 font-semibold",
+      electric:
+        "bg-gradient-to-r from-[#1163FB] via-[#2563EB] to-[#0C4FCB] hover:from-[#0C4FCB] hover:to-[#1163FB] text-white shadow-xl shadow-[#1163FB]/30 border border-white/20 font-semibold",
+      cyber:
+        "bg-[#CFF601] hover:bg-[#BCE000] text-black font-bold shadow-lg shadow-[#CFF601]/25 border border-[#CFF601]/60",
       secondary:
         "bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-100 dark:border-slate-700",
       outline:
-        "border border-slate-300 dark:border-slate-700 hover:border-indigo-500 text-slate-800 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-white bg-white/80 dark:bg-slate-900/60 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 backdrop-blur-sm shadow-sm",
+        "border border-slate-300 dark:border-white/15 hover:border-[#1163FB] dark:hover:border-[#1163FB] text-slate-800 dark:text-slate-100 hover:text-[#1163FB] dark:hover:text-white bg-white/80 dark:bg-white/5 hover:bg-blue-50/50 dark:hover:bg-white/10 backdrop-blur-md shadow-sm",
       ghost:
-        "text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60",
+        "text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5",
       emerald:
         "bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/20 border border-emerald-400/30",
       neon:
-        "bg-indigo-500/10 dark:bg-indigo-600/20 text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-500/40 hover:bg-indigo-500/20 hover:border-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.15)]",
+        "bg-[#1163FB]/10 dark:bg-[#1163FB]/20 text-[#1163FB] dark:text-[#60A5FA] border border-[#1163FB]/30 dark:border-[#1163FB]/40 hover:bg-[#1163FB]/20 shadow-[0_0_15px_rgba(17,99,251,0.2)]",
     };
 
     const sizes = {
-      sm: "h-8 px-3 text-xs gap-1.5",
-      md: "h-10 px-4 text-sm gap-2",
-      lg: "h-12 px-6 text-base gap-2.5 font-semibold",
+      sm: "h-8 px-3.5 text-xs gap-1.5",
+      md: "h-10 px-5 text-sm gap-2",
+      lg: "h-12 px-7 text-base gap-2.5 font-semibold",
+      xl: "h-14 px-8 text-lg gap-3 font-bold",
       icon: "h-10 w-10 p-0",
     };
 

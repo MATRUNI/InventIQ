@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SOLUTIONS_DATA } from "@/lib/data";
 import { SolutionItem } from "@/lib/types";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import {
@@ -15,6 +14,7 @@ import {
   CheckCircle,
   Code2,
   ArrowRight,
+  Sparkles,
 } from "lucide-react";
 
 export function SolutionsSection() {
@@ -39,51 +39,54 @@ export function SolutionsSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12,
+        staggerChildren: 0.16,
+        delayChildren: 0.1,
       },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 24, scale: 0.97 },
+    hidden: { opacity: 0, y: 36 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
-        duration: 0.45,
-        ease: [0.16, 1, 0.3, 1] as const,
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
 
   return (
-    <section id="solutions" className="py-24 bg-slate-50/70 dark:bg-[#070B14] relative transition-colors duration-200">
+    <section id="solutions" className="py-28 bg-slate-50/70 dark:bg-[#07090F] relative transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto space-y-4 mb-14"
         >
-          <Badge variant="blue" dot>
-            Engineered Solutions
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-950 dark:text-white">
-            Enterprise Solutions &{" "}
-            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-600 dark:from-blue-400 dark:via-indigo-400 dark:to-emerald-400 bg-clip-text text-transparent">
-              Product Offerings
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+            <span className="h-2 w-2 rounded-full bg-[#1163FB]" />
+            <span>Enterprise Solutions & Offerings</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.08] text-slate-950 dark:text-white">
+            Architected for Disruption.{" "}
+            <span className="text-[#1163FB] dark:text-[#3B82F6]">
+              Built for Scale.
             </span>
           </h2>
+
           <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg">
-            Proven architectures deployed across Tier-1 financial institutions, healthcare providers, and high-scale consumer enterprises.
+            Proven enterprise architectures deployed across Tier-1 financial institutions, healthcare providers, and high-scale consumer platforms.
           </p>
         </motion.div>
 
-        {/* Tabbed Navigation Bar */}
-        <div className="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar">
+        {/* Tabbed Navigation Bar (Appinventiv Style Pills) */}
+        <div className="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto pb-4 mb-12 no-scrollbar">
           {categories.map((cat) => {
             const Icon = cat.icon;
             const isActive = selectedCategory === cat.id;
@@ -91,62 +94,63 @@ export function SolutionsSection() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer border ${
+                className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap cursor-pointer border ${
                   isActive
-                    ? "bg-indigo-50 dark:bg-indigo-600/20 text-indigo-700 dark:text-indigo-300 border-indigo-300 dark:border-indigo-500/50 shadow-sm"
-                    : "bg-white dark:bg-[#111827]/80 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:text-slate-950 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700"
+                    ? "bg-[#1163FB] text-white border-[#1163FB] shadow-md shadow-[#1163FB]/25"
+                    : "bg-white dark:bg-[#0E131E] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-white/10 hover:text-slate-950 dark:hover:text-white hover:border-slate-300 dark:hover:border-white/20"
                 }`}
               >
-                <Icon className={`w-4 h-4 ${isActive ? "text-indigo-600 dark:text-indigo-400" : "text-slate-400"}`} />
+                <Icon className={`w-4 h-4 ${isActive ? "text-white" : "text-slate-400"}`} />
                 <span>{cat.label}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Solutions Grid with Framer Motion AnimatePresence */}
+        {/* Solutions Grid */}
         <motion.div
-          layout
+          key={selectedCategory}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ once: true, amount: 0.15 }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-8"
         >
-          <AnimatePresence mode="popLayout">
-            {filteredSolutions.map((solution) => (
-              <motion.div
-                layout
-                key={solution.id}
-                variants={cardVariants}
-                whileHover={{ y: -8, scale: 1.015 }}
-                transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                className="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#0D131F] border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-2xl dark:hover:shadow-indigo-500/10 transition-colors shadow-md dark:shadow-xl group"
-              >
+          {filteredSolutions.map((solution) => (
+            <motion.div
+              key={solution.id}
+              variants={cardVariants}
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 280, damping: 22 }}
+              className="rounded-3xl bg-white dark:bg-gradient-to-b dark:from-[#0E131E] dark:to-[#080B12] border border-slate-200 dark:border-white/10 p-8 flex flex-col justify-between hover:border-[#1163FB]/60 dark:hover:border-[#1163FB]/60 hover:shadow-2xl hover:shadow-[#1163FB]/15 transition-[border-color,box-shadow] duration-200 group"
+            >
                 <div className="space-y-6">
                   {/* Header row */}
                   <div className="flex items-center justify-between gap-4">
-                    <Badge variant="indigo">{solution.badge}</Badge>
-                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1163FB]/10 text-[#1163FB] dark:text-[#60A5FA] text-xs font-bold">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      {solution.badge}
+                    </span>
+                    <span className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">
                       {solution.category}
                     </span>
                   </div>
 
                   {/* Title & Tagline */}
                   <div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-[#1163FB] dark:group-hover:text-[#60A5FA] transition-colors">
                       {solution.title}
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-300 mt-2 text-sm leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-300 mt-2.5 text-sm leading-relaxed">
                       {solution.description}
                     </p>
                   </div>
 
                   {/* Metrics Matrix */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3 border-y border-slate-100 dark:border-slate-800/80">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 py-4 border-y border-slate-100 dark:border-white/10">
                     {solution.metrics.map((m, idx) => (
                       <div key={idx} className="flex flex-col">
-                        <span className="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400">
+                        <span className="text-lg font-bold font-mono text-[#1163FB] dark:text-[#3B82F6]">
                           {m.value}
                         </span>
                         <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
@@ -157,10 +161,10 @@ export function SolutionsSection() {
                   </div>
 
                   {/* Key Architectural Features */}
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {solution.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-600 dark:text-slate-300">
-                        <CheckCircle className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
+                        <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -171,7 +175,7 @@ export function SolutionsSection() {
                     {solution.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300"
+                        className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 font-medium"
                       >
                         {tech}
                       </span>
@@ -180,27 +184,26 @@ export function SolutionsSection() {
                 </div>
 
                 {/* Action Button */}
-                <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <div className="pt-6 mt-6 border-t border-slate-100 dark:border-white/10 flex items-center justify-between">
                   <Button
                     onClick={() => setActiveModalSolution(solution)}
                     variant="outline"
                     size="sm"
-                    className="gap-2 text-xs"
+                    className="rounded-full gap-2 text-xs font-semibold"
                   >
-                    <Code2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                    <Code2 className="w-4 h-4 text-[#1163FB]" />
                     <span>View Technical Specs</span>
                   </Button>
 
                   <a href="#contact">
-                    <Button variant="ghost" size="sm" className="gap-1 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
-                      <span>Deploy Solution</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                    <Button variant="ghost" size="sm" className="rounded-full gap-1 text-xs font-semibold group/link">
+                      <span>Deploy Blueprint</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
                     </Button>
                   </a>
                 </div>
               </motion.div>
             ))}
-          </AnimatePresence>
         </motion.div>
       </div>
 
@@ -214,7 +217,7 @@ export function SolutionsSection() {
         >
           <div className="space-y-6">
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-[#1163FB] dark:text-[#60A5FA] mb-2">
                 Executive Overview
               </h4>
               <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
@@ -223,13 +226,13 @@ export function SolutionsSection() {
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-3">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-3">
                 Production Performance Benchmarks
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {activeModalSolution.metrics.map((m, idx) => (
-                  <div key={idx} className="bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-xl p-3">
-                    <div className="text-lg font-bold font-mono text-emerald-600 dark:text-emerald-400">{m.value}</div>
+                  <div key={idx} className="bg-slate-100 dark:bg-[#0E131E] border border-slate-200 dark:border-white/10 rounded-2xl p-3.5">
+                    <div className="text-lg font-bold font-mono text-[#1163FB] dark:text-[#3B82F6]">{m.value}</div>
                     <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{m.label}</div>
                   </div>
                 ))}
@@ -237,13 +240,13 @@ export function SolutionsSection() {
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
                 Reference Implementation Architecture
               </h4>
-              <div className="rounded-xl bg-[#070A10] border border-slate-800 p-4 font-mono text-xs overflow-x-auto text-slate-200">
-                <div className="text-slate-400 pb-2 border-b border-slate-800 mb-2 flex items-center justify-between">
+              <div className="rounded-2xl bg-[#080B12] border border-white/10 p-4 font-mono text-xs overflow-x-auto text-slate-200">
+                <div className="text-slate-400 pb-2 border-b border-white/10 mb-2 flex items-center justify-between">
                   <span>// {activeModalSolution.architectureSnippet.title}</span>
-                  <span className="uppercase text-[10px] text-indigo-400">
+                  <span className="uppercase text-[10px] text-[#1163FB] font-bold">
                     {activeModalSolution.architectureSnippet.language}
                   </span>
                 </div>
@@ -253,12 +256,12 @@ export function SolutionsSection() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <div className="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
               <span className="text-xs text-slate-500 dark:text-slate-400">
-                Full integration documentation available upon architecture sign-off.
+                Full enterprise reference blueprint delivered under NDA.
               </span>
               <a href="#contact" onClick={() => setActiveModalSolution(null)}>
-                <Button variant="primary" size="md">
+                <Button variant="electric" size="md" className="rounded-full">
                   Request Solution Blueprint
                 </Button>
               </a>
