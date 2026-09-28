@@ -64,18 +64,21 @@ export function Recaptcha({
   const renderWidget = useCallback(() => {
     if (!window.grecaptcha?.render || !containerRef.current) return;
 
-    try {
-      // Clear previous widget iframe if re-rendering on theme toggle
-      if (widgetIdRef.current !== null) {
-        try {
-          window.grecaptcha.reset(widgetIdRef.current);
-        } catch {
-          // Ignore reset error if widget unmounted
-        }
-        containerRef.current.innerHTML = "";
-        widgetIdRef.current = null;
+    // If already rendered into container and theme hasn't changed, don't re-render
+    if (widgetIdRef.current !== null) {
+      try {
+        window.grecaptcha.reset(widgetIdRef.current);
+      } catch {
+        // ignore
       }
+      containerRef.current.innerHTML = "";
+      widgetIdRef.current = null;
+    } else if (containerRef.current.childNodes.length > 0) {
+      // Element is not empty
+      containerRef.current.innerHTML = "";
+    }
 
+    try {
       const id = window.grecaptcha.render(containerRef.current, {
         sitekey: siteKey,
         theme: resolvedTheme === "light" ? "light" : "dark",
@@ -207,21 +210,19 @@ export function Recaptcha({
           </div>
         )}
 
-        {/* Standard Google reCAPTCHA Container */}
+        {/* Standard Google reCAPTCHA Container - strictly empty for Google render */}
         <div
           style={{ display: loadFailed || adBlockBypassed ? "none" : "block" }}
+          className="relative min-h-[78px] min-w-[304px] flex items-center justify-center bg-slate-50/50 dark:bg-white/5 rounded-md"
         >
-          <div
-            ref={containerRef}
-            className="min-h-[78px] min-w-[304px] flex items-center justify-center bg-slate-50/50 dark:bg-white/5 rounded-md"
-          >
-            {!isReady && (
-              <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
-                <RefreshCw className="w-3.5 h-3.5 animate-spin text-indigo-500" />
-                <span>Loading Google reCAPTCHA...</span>
-              </div>
-            )}
-          </div>
+          {!isReady && (
+            <div className="absolute inset-0 flex items-center justify-center gap-2 text-xs text-slate-400 font-mono pointer-events-none">
+              <RefreshCw className="w-3.5 h-3.5 animate-spin text-indigo-500" />
+              <span>Loading Google reCAPTCHA...</span>
+            </div>
+          )}
+          {/* Target container MUST be completely empty with 0 childNodes */}
+          <div ref={containerRef} />
         </div>
       </div>
 
